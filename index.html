@@ -3,45 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glamour Fragrance - Timeless Elegance</title>
+    <title>Glamour Fragrance - Exquisite Scents</title>
     <style>
         body {
-            font-family: 'Playfair Display', serif; /* Elegant font like their headings */
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background: #1a1a1a; /* Dark background */
-            color: #d4af37; /* Gold text */
+            background: #f9f6f2;
+            color: #2d2d2d;
             line-height: 1.6;
         }
-        nav {
-            background: #0f0f0f; /* Darker nav bar */
-            padding: 1rem;
-            text-align: center;
+        header {
+            background: #fff;
+            padding: 1rem 0;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid #d4af37;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #c5a86e;
+            margin: 0;
+        }
+        nav {
+            margin-top: 0.5rem;
         }
         nav a {
-            color: #d4af37;
+            color: #2d2d2d;
             margin: 0 1.5rem;
             text-decoration: none;
             font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             transition: color 0.3s ease;
         }
         nav a:hover {
-            color: #fff;
+            color: #c5a86e;
         }
         .hero {
             background: url('https://i.imgur.com/3UjXGgG.jpeg') center/cover no-repeat;
-            height: 700px; /* Taller hero like theirs */
+            height: 500px;
             color: #fff;
             text-align: center;
-            padding-top: 250px;
+            padding-top: 150px;
             position: relative;
+            margin-top: 80px;
         }
         .hero::after {
             content: '';
@@ -50,7 +60,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            background: rgba(0, 0, 0, 0.3);
             z-index: 1;
         }
         .hero h1, .hero p, .hero button {
@@ -58,28 +68,32 @@
             z-index: 2;
         }
         .hero h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 3.5rem;
-            font-weight: 700;
             margin: 0;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
         }
         .hero p {
             font-size: 1.5rem;
-            font-family: 'Roboto', sans-serif; /* Cleaner secondary font */
             margin: 1rem 0;
         }
         .section {
             padding: 5rem 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: auto;
             text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
         }
         h2 {
-            font-size: 2.2rem;
-            color: #d4af37;
-            margin-bottom: 2rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: #2d2d2d;
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
         }
         .products {
             display: grid;
@@ -87,32 +101,36 @@
             gap: 2rem;
         }
         .product {
-            background: #2a2a2a; /* Dark card background */
+            background: #fff;
             padding: 1.5rem;
-            border: 1px solid #d4af37;
+            border: 1px solid #c5a86e;
             border-radius: 8px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .product:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         .product img {
             width: 100%;
-            height: 220px;
+            height: 250px;
             object-fit: cover;
             border-radius: 5px;
             margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .product:hover img {
+            transform: scale(1.05);
         }
         .product h3 {
-            font-size: 1.2rem;
-            color: #fff;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #2d2d2d;
             margin: 0.5rem 0;
         }
         .product p {
-            font-family: 'Roboto', sans-serif;
-            color: #d4af37;
-            font-size: 1rem;
+            color: #666;
+            font-size: 1.1rem;
         }
         .filters {
             margin: 2rem 0;
@@ -120,27 +138,26 @@
         select, button {
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
-            background: #0f0f0f;
-            color: #d4af37;
-            border: 1px solid #d4af37;
+            background: #2d2d2d;
+            color: #c5a86e;
+            border: 1px solid #c5a86e;
             border-radius: 5px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
         button:hover, select:hover {
-            background: #d4af37;
-            color: #1a1a1a;
+            background: #c5a86e;
+            color: #2d2d2d;
         }
         .testimonials {
-            background: #0f0f0f;
-            padding: 3rem 2rem;
+            background: #2d2d2d;
             color: #fff;
+            padding: 4rem 2rem;
         }
         .testimonials p {
-            font-family: 'Roboto', sans-serif;
             font-style: italic;
-            font-size: 1.1rem;
-            color: #d4af37;
+            font-size: 1.2rem;
+            margin: 1rem 0;
         }
         .form-group {
             margin: 1.5rem 0;
@@ -152,62 +169,63 @@
         input, textarea {
             width: 100%;
             padding: 0.8rem;
-            background: #2a2a2a;
-            color: #fff;
-            border: 1px solid #d4af37;
+            border: 1px solid #c5a86e;
             border-radius: 5px;
             font-family: 'Roboto', sans-serif;
         }
         footer {
-            background: #0f0f0f;
-            color: #d4af37;
+            background: #2d2d2d;
+            color: #c5a86e;
             padding: 2rem;
-            text-align: center;
             font-size: 0.9rem;
-            border-top: 1px solid #d4af37;
+            text-align: center;
         }
         footer a {
             color: #fff;
             text-decoration: none;
             margin: 0 1rem;
+            transition: color 0.3s ease;
         }
         footer a:hover {
-            color: #d4af37;
+            color: #c5a86e;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#shop">Shop</a>
-        <a href="#about">About Us</a>
-        <a href="#collections">Collections</a>
-        <a href="#gifts">Gift Sets</a>
-        <a href="#guide">Fragrance Guide</a>
-        <a href="#contact">Contact</a>
-        <a href="#blog">Blog</a>
-        <a href="#faq">FAQ</a>
-        <a href="#account">My Account</a>
-    </nav>
+    <!-- Header -->
+    <header>
+        <h1 class="logo">Glamour Fragrance</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#about">About Us</a>
+            <a href="#collections">Collections</a>
+            <a href="#gifts">Gift Sets</a>
+            <a href="#guide">Fragrance Guide</a>
+            <a href="#contact">Contact</a>
+            <a href="#blog">Blog</a>
+            <a href="#faq">FAQ</a>
+            <a href="#account">My Account</a>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
     <div class="hero" id="home">
-        <h1>Glamour Fragrance</h1>
-        <p>Discover the Essence of Luxury</p>
+        <h1>Exquisite Scents</h1>
+        <p>Discover the Art of Fragrance</p>
         <button onclick="location.href='#shop'">Shop Now</button>
     </div>
 
     <!-- Introduction -->
     <div class="section">
         <h2>About Glamour Fragrance</h2>
-        <p>Born from a passion for opulence, we craft timeless scents that elevate your presence with affordable elegance.</p>
+        <p>Rooted in a legacy of elegance, Glamour Fragrance brings you premium scents crafted with passion and precision. Experience luxury that’s accessible to all.</p>
     </div>
 
     <!-- Featured Products -->
     <div class="section" id="featured">
-        <h2>Signature Scents</h2>
+        <h2>Signature Collection</h2>
         <div class="products">
             <div class="product">
                 <img src="https://i.imgur.com/YOUR_DIOR_URL.png" alt="Dior Homme Intense">
@@ -232,15 +250,15 @@
 
     <!-- Testimonials -->
     <div class="section testimonials">
-        <h2>Voices of Elegance</h2>
-        <p>"L’Immensité defines luxury for me." - Aisha K.</p>
-        <p>"Delina Exclusif is pure bliss." - James M.</p>
-        <p>"Opulence at its finest!" - Sarah L.</p>
+        <h2>What Our Clients Say</h2>
+        <p>"L’Immensité defines luxury for me—simply divine." - Aisha K.</p>
+        <p>"Delina Exclusif is my new favorite—fast delivery!" - James M.</p>
+        <p>"Elegance at its finest, and so affordable." - Sarah L.</p>
     </div>
 
     <!-- Shop Section -->
     <div class="section" id="shop">
-        <h2>Our Collection</h2>
+        <h2>Our Full Collection</h2>
         <div class="filters">
             <select id="category">
                 <option value="all">All Scents</option>
@@ -258,28 +276,41 @@
 
     <!-- About Us -->
     <div class="section" id="about">
-        <h2>Our Legacy</h2>
-        <p>At Glamour Fragrance, we blend artistry and accessibility to create scents that resonate with sophistication.</p>
+        <h2>Our Story</h2>
+        <p><strong>Vision:</strong> To redefine luxury with timeless fragrances.</p>
+        <p><strong>Craft:</strong> Masterfully blended scents from the world’s finest ingredients.</p>
+        <p><strong>Promise:</strong> Exceptional quality, accessible to all.</p>
     </div>
 
     <!-- Contact Us -->
     <div class="section" id="contact">
-        <h2>Connect with Us</h2>
+        <h2>Get in Touch</h2>
         <p><strong>Location:</strong> City Mall, Dar es Salaam</p>
         <p><strong>WhatsApp:</strong> +255 772 312 733</p>
         <p><strong>Email:</strong> support@glamourfragrance.com</p>
         <form>
             <div class="form-group">
-                <input type="text" id="name" placeholder="Name" required>
+                <label for="name">Name</label>
+                <input type="text" id="name" required>
             </div>
             <div class="form-group">
-                <input type="email" id="email" placeholder="Email" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
             </div>
             <div class="form-group">
-                <textarea id="message" rows="4" placeholder="Your Message" required></textarea>
+                <label for="message">Message</label>
+                <textarea id="message" rows="4" required></textarea>
             </div>
             <button type="submit">Send</button>
         </form>
+    </div>
+
+    <!-- Blog -->
+    <div class="section" id="blog">
+        <h2>Fragrance Insights</h2>
+        <p><strong>2025 Trends:</strong> Woody notes take center stage.</p>
+        <p><strong>Longevity Tips:</strong> Pair with matching lotions.</p>
+        <p><strong>Layering:</strong> Mix florals and musks for a unique scent.</p>
     </div>
 
     <!-- Footer -->
@@ -289,6 +320,7 @@
 
     <script>
         const perfumes = [
+            // Men's Fragrances
             { name: "Dior Homme Intense", category: "men", price: 35000, image: "https://i.imgur.com/YOUR_DIOR_URL.png" },
             { name: "Meteore", category: "men", price: 35000, image: "https://i.imgur.com/YOUR_METEORE_URL.png" },
             { name: "Elysium", category: "men", price: 35000, image: "https://i.imgur.com/YOUR_ELYSIUM_URL.png" },
@@ -310,6 +342,7 @@
             { name: "Colonial Leather", category: "men", price: 35000, image: "https://i.imgur.com/YOUR_COLONIAL_URL.png" },
             { name: "The Blazing Mr. Sam", category: "men", price: 35000, image: "https://i.imgur.com/YOUR_BLAZING_URL.png" },
             { name: "The Tragedy of Lord George", category: "men", price: 35000, image: "https://i.imgur.com/YOUR_TRAGEDY_URL.png" },
+            // Women's Fragrances
             { name: "Zahira", category: "women", price: 35000, image: "https://i.imgur.com/YOUR_ZAHIRA_URL.png" },
             { name: "Bottega Veneta", category: "women", price: 35000, image: "https://i.imgur.com/YOUR_BOTTEGA_URL.png" },
             { name: "Sakura", category: "women", price: 35000, image: "https://i.imgur.com/YOUR_SAKURA_URL.png" },
@@ -338,6 +371,7 @@
             { name: "Private Collection", category: "women", price: 35000, image: "https://i.imgur.com/YOUR_PRIVATE_URL.png" },
             { name: "Rose des Vents", category: "women", price: 35000, image: "https://i.imgur.com/YOUR_ROSEDESVENTS_URL.png" },
             { name: "Moonlight Patchouli", category: "women", price: 35000, image: "https://i.imgur.com/YOUR_MOONLIGHT_URL.png" },
+            // Unisex Fragrances
             { name: "Ombre Leather", category: "unisex", price: 35000, image: "https://i.imgur.com/YOUR_OMBRE_URL.png" },
             { name: "Irish Leather", category: "unisex", price: 35000, image: "https://i.imgur.com/YOUR_IRISH_URL.png" },
             { name: "Bond No 9", category: "unisex", price: 35000, image: "https://i.imgur.com/YOUR_BOND_URL.png" },
@@ -370,7 +404,7 @@
 
         document.getElementById("category").addEventListener("change", e => renderProducts(e.target.value, document.getElementById("sort").value));
         document.getElementById("sort").addEventListener("change", e => renderProducts(document.getElementById("category").value, e.target.value));
-        renderProducts();
+        renderProducts(); // Initial render
     </script>
 </body>
 </html>

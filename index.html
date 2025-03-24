@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glamour Fragrance - Luxury Perfumes</title>
+<style>
+body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+nav { background: #2b1a2f; color: white; padding: 1rem; text-align: center; position: sticky; top: 0; z-index: 10; }
+nav a { color: white; margin: 0 1.5rem; text-decoration: none; font-weight: bold; }
+nav a:hover { color: #e6c7d5; }
+.hero { background: url('https://via.placeholder.com/1200x400?text=Glamour+Fragrance+Banner') center/cover; height: 400px; color: white; text-align: center; padding-top: 150px; }
+.hero h1 { font-size: 3rem; margin: 0; }
+.hero p { font-size: 1.5rem; }
+.section { padding: 3rem 2rem; max-width: 1200px; margin: auto; }
+h2 { color: #2b1a2f; font-size: 2rem; text-align: center; }
+.products { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+.product { border: 1px solid #e6c7d5; padding: 1rem; text-align: center; background: #fff; transition: transform 0.2s; }
+.product:hover { transform: scale(1.05); }
+.filters { margin: 1rem 0; text-align: center; }
+select, button { padding: 0.5rem; font-size: 1rem; margin: 0 0.5rem; background: #2b1a2f; color: white; border: none; cursor: pointer; }
+button:hover { background: #e6c7d5; color: #2b1a2f; }
+.testimonials { background: #f9f2f5; padding: 2rem; }
+.form-group { margin: 1rem 0; }
+input, textarea { width: 100%; padding: 0.5rem; margin-top: 0.5rem; }
+footer { background: #2b1a2f; color: white; text-align: center; padding: 1rem; font-size: 0.9rem; }
+footer a { color: #e6c7d5; text-decoration: none; }
+</style>
+</head>
+<body>
+<!-- Navigation -->
+<nav>
+<a href="#home">Home</a>
+<a href="#shop">Shop</a>
+<a href="#about">About Us</a>
+<a href="#collections">Collections</a>
+<a href="#gifts">Gift Sets</a>
+<a href="#guide">Fragrance Guide</a>
+<a href="#contact">Contact</a>
+<a href="#blog">Blog</a>
+<a href="#faq">FAQ</a>
+<a href="#account">My Account</a>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero" id="home">
+<h1>Glamour Fragrance</h1>
+<p>Elevate Your Essence with Timeless Scents</p>
+<button onclick="location.href='#shop'">Shop Now</button>
+</div>
+
+<!-- Introduction -->
+<div class="section">
+<h2>About Glamour Fragrance</h2>
+<p>Born from a passion for luxury and individuality, Glamour Fragrance crafts scents that define moments. Our mission is to blend premium ingredients into affordable elegance, offering exclusivity for every soul.</p>
+</div>
+
+<!-- Featured Products -->
+<div class="section" id="featured">
+<h2>Featured Best Sellers</h2>
+<div class="products">
+<div class="product"><h3>Dior Homme Intense</h3><p>$120</p><button>Buy Now</button></div>
+<div class="product"><h3>Coco Mademoiselle</h3><p>$130</p><button>Buy Now</button></div>
+<div class="product"><h3>Ombre Leather</h3><p>$110</p><button>Buy Now</button></div>
+</div>
+</div>
+
+<!-- Testimonials -->
+<div class="section testimonials">
+<h2>What Our Customers Say</h2>
+<p>"L’Immensité is my signature scent now—pure luxury!" - Aisha K.</p>
+<p>"Fast shipping, and Delina Exclusif is divine." - James M.</p>
+<p>"Affordable luxury at its best!" - Sarah L.</p>
+</div>
+
+<!-- Shop Section -->
+<div class="section" id="shop">
+<h2>Shop Our Collection</h2>
+<div class="filters">
+<select id="category">
+<option value="all">All</option>
+<option value="men">Men</option>
+<option value="women">Women</option>
+<option value="unisex">Unisex</option>
+</select>
+<select id="sort">
+<option value="name">Sort by Name</option>
+<option value="price">Sort by Price</option>
+</select>
+</div>
+<div class="products" id="product-list"></div>
+</div>
+
+<!-- About Us -->
+<div class="section" id="about">
+<h2>About Us</h2>
+<p><strong>Brand Story:</strong> Glamour Fragrance is driven by a vision to make luxury accessible. We value quality, creativity, and connection.</p>
+<p><strong>Craftsmanship:</strong> Our perfumes are made with the finest ingredients, blending rare notes into unique, lasting scents.</p>
+<p><strong>Why Choose Us?</strong> Luxury meets affordability, with exclusive scents you won’t find anywhere else.</p>
+</div>
+
+<!-- Contact Us -->
+<div class="section" id="contact">
+<h2>Contact Us</h2>
+<p><strong>Store Location:</strong> City Mall, Dar es Salaam</p>
+<p><strong>WhatsApp & Phone:</strong> +255 123 456 789</p>
+<p><strong>Email:</strong> support@glamourfragrance.com</p>
+<form>
+<div class="form-group">
+<label for="name">Name</label>
+<input type="text" id="name" required>
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input type="email" id="email" required>
+</div>
+<div class="form-group">
+<label for="message">Message</label>
+<textarea id="message" rows="4" required></textarea>
+</div>
+<button type="submit">Send</button>
+</form>
+</div>
+
+<!-- Blog -->
+<div class="section" id="blog">
+<h2>Blog</h2>
+<p><strong>Latest Fragrance Trends:</strong> Discover what’s hot in 2025—woody notes are back!</p>
+<p><strong>How to Make Your Perfume Last Longer:</strong> Layer with matching lotions for all-day scent.</p>
+<p><strong>The Art of Layering Fragrances:</strong> Mix florals and musks for a custom vibe.</p>
+</div>
+
+<!-- Footer -->
+<footer>
+<p>© 2025 Glamour Fragrance | <a href="#privacy">Privacy Policy</a> | <a href="#terms">Terms & Conditions</a> | <a href="#returns">Refund & Returns</a></p>
+</footer>
+
+<script>
+const perfumes = [
+	// Men's Fragrances
+	{ name: "Dior Homme Intense", category: "men", price: 120 },
+	{ name: "Meteore", category: "men", price: 95 },
+	{ name: "Elysium", category: "men", price: 110 },
+	{ name: "L'Immensité", category: "men", price: 105 },
+	{ name: "Oud Wood", category: "men", price: 150 },
+	{ name: "Erolfa 16", category: "men", price: 130 },
+	{ name: "Absolute Guilty (New)", category: "men", price: 115 },
+	{ name: "Amorino", category: "men", price: 90 },
+	{ name: "Luna Rosa Ocean", category: "men", price: 100 },
+	{ name: "Garanat", category: "men", price: 85 },
+	{ name: "L'Envol", category: "men", price: 95 },
+	{ name: "Black Phantom", category: "men", price: 140 },
+	{ name: "Epic for Men", category: "men", price: 105 },
+	{ name: "Nouveau Monde", category: "men", price: 110 },
+	{ name: "Patchouli Intense", category: "men", price: 125 },
+	{ name: "Italian Leather", category: "men", price: 135 },
+	{ name: "Oud Malaki", category: "men", price: 145 },
+	{ name: "Onekh Bvlgari", category: "men", price: 115 },
+	{ name: "Colonial Leather", category: "men", price: 130 },
+	{ name: "The Blazing Mr. Sam", category: "men", price: 125 },
+	{ name: "The Tragedy of Lord George", category: "men", price: 140 },
+	// Women's Fragrances
+	{ name: "Zahira", category: "women", price: 90 },
+	{ name: "Bottega Veneta", category: "women", price: 115 },
+	{ name: "Sakura", category: "women", price: 100 },
+	{ name: "Coco Mademoiselle", category: "women", price: 130 },
+	{ name: "The Only One", category: "women", price: 105 },
+	{ name: "Delina Exclusif", category: "women", price: 150 },
+	{ name: "Lady Million", category: "women", price: 95 },
+	{ name: "The Bewitching Yasmine", category: "women", price: 110 },
+	{ name: "Because It’s You", category: "women", price: 85 },
+	{ name: "Valentino Donna", category: "women", price: 120 },
+	{ name: "L'Interdit", category: "women", price: 115 },
+	{ name: "Love Story", category: "women", price: 100 },
+	{ name: "Armani Si", category: "women", price: 125 },
+	{ name: "Gucci Bloom", category: "women", price: 105 },
+	{ name: "Chance Eau Tendre", category: "women", price: 130 },
+	{ name: "Guilty Absolute Femme", category: "women", price: 110 },
+	{ name: "Roses Vanille", category: "women", price: 95 },
+	{ name: "Love", category: "women", price: 90 },
+	{ name: "Aura", category: "women", price: 100 },
+	{ name: "Midnight Trésor", category: "women", price: 115 },
+	{ name: "Twilly d’Hermès", category: "women", price: 120 },
+	{ name: "Angel Nova", category: "women", price: 110 },
+	{ name: "Insolence", category: "women", price: 105 },
+	{ name: "Coco Noir", category: "women", price: 135 },
+	{ name: "Eau du Soir", category: "women", price: 140 },
+	{ name: "Private Collection", category: "women", price: 145 },
+	{ name: "Rose des Vents", category: "women", price: 125 },
+	{ name: "Moonlight Patchouli", category: "women", price: 130 },
+	// Unisex Fragrances
+	{ name: "Ombre Leather", category: "unisex", price: 110 },
+	{ name: "Irish Leather", category: "unisex", price: 120 },
+	{ name: "Bond No 9", category: "unisex", price: 150 },
+	{ name: "Sheikh Abdullah", category: "unisex", price: 135 },
+	{ name: "Ambre Nuit", category: "unisex", price: 125 },
+	{ name: "Liebe", category: "unisex", price: 95 },
+	{ name: "Rouge Malachite", category: "unisex", price: 130 },
+	{ name: "Halfeti Cedar", category: "unisex", price: 140 },
+	{ name: "Amber Malaki", category: "unisex", price: 115 },
+	{ name: "Opera", category: "unisex", price: 145 },
+	{ name: "Santal Royal", category: "unisex", price: 130 },
+	{ name: "Bibliothèque", category: "unisex", price: 120 },
+	{ name: "Black Saffron", category: "unisex", price: 135 },
+	{ name: "Gris Montaigne", category: "unisex", price: 125 }
+];
+
+function renderProducts(category = "all", sort = "name") {
+	let filtered = category === "all" ? perfumes : perfumes.filter(p => p.category === category);
+	filtered.sort((a, b) => sort === "price" ? a.price - b.price : a.name.localeCompare(b.name));
+	const list = document.getElementById("product-list");
+	list.innerHTML = filtered.map(p => `
+	<div class="product">
+	<h3>${p.name}</h3>
+	<p>$${p.price}</p>
+	<button onclick="alert('Add PayPal code for ${p.name} here')">Buy Now</button>
+	</div>
+	`).join("");
+}
+
+document.getElementById("category").addEventListener("change", e => renderProducts(e.target.value, document.getElementById("sort").value));
+document.getElementById("sort").addEventListener("change", e => renderProducts(document.getElementById("category").value, e.target.value));
+renderProducts(); // Initial render
+</script>
+</body>
+</html>

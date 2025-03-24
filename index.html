@@ -6,16 +6,16 @@
     <title>Glamour Fragrance - Timeless Luxury Scents</title>
     <style>
         body {
-            font-family: 'Cinzel', serif; /* Luxe, elegant font */
+            font-family: 'Cinzel', serif;
             margin: 0;
             padding: 0;
-            background: #f7f4f0; /* Soft off-white for warmth */
-            color: #1a1a1a; /* Deep charcoal for sophistication */
+            background: #f7f4f0;
+            color: #1a1a1a;
             line-height: 1.8;
         }
         nav {
-            background: #1a1a1a; /* Rich black for luxury */
-            color: #d4af37; /* Gold accent */
+            background: #1a1a1a;
+            color: #d4af37;
             padding: 1.5rem;
             text-align: center;
             position: fixed;
@@ -34,11 +34,11 @@
             transition: color 0.3s ease;
         }
         nav a:hover {
-            color: #fff; /* White hover for contrast */
+            color: #fff;
         }
         .hero {
             background: url('https://i.imgur.com/3UjXGgG.jpeg') center/cover no-repeat;
-            height: 600px; /* Taller for grandeur */
+            height: 600px;
             color: #fff;
             text-align: center;
             padding-top: 200px;
@@ -52,7 +52,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* Subtle overlay for text readability */
+            background: rgba(0, 0, 0, 0.4);
             z-index: 1;
         }
         .hero h1, .hero p, .hero button {
@@ -67,7 +67,7 @@
         }
         .hero p {
             font-size: 1.8rem;
-            font-family: 'Lora', serif; /* Elegant secondary font */
+            font-family: 'Lora', serif;
             margin: 1rem 0;
         }
         .section {
@@ -91,13 +91,25 @@
         .product {
             background: #fff;
             padding: 1.5rem;
-            border: 1px solid #d4af37; /* Gold border */
+            border: 1px solid #d4af37;
             border-radius: 5px;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
         }
         .product:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .product:hover img {
+            transform: scale(1.05);
         }
         .product h3 {
             font-size: 1.3rem;
@@ -116,7 +128,7 @@
             padding: 0.8rem 1.5rem;
             font-size: 1rem;
             background: #1a1a1a;
-            color: #d4af37;
+            color: #d Clientd4af37;
             border: 1px solid #d4af37;
             border-radius: 5px;
             cursor: pointer;
@@ -166,7 +178,7 @@
             color: #d4af37;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet"> <!-- Luxe fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -200,9 +212,24 @@
     <div class="section" id="featured">
         <h2>Signature Scents</h2>
         <div class="products">
-            <div class="product"><h3>Dior Homme Intense</h3><p>TZS 35,000</p><button>Add to Cart</button></div>
-            <div class="product"><h3>Coco Mademoiselle</h3><p>TZS 35,000</p><button>Add to Cart</button></div>
-            <div class="product"><h3>Ombre Leather</h3><p>TZS 35,000</p><button>Add to Cart</button></div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Dior Homme Intense">
+                <h3>Dior Homme Intense</h3>
+                <p>TZS 35,000</p>
+                <button onclick="alert('Added Dior Homme Intense to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733. WhatsApp us at +255 772 312 733 with proof.')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Coco Mademoiselle">
+                <h3>Coco Mademoiselle</h3>
+                <p>TZS 35,000</p>
+                <button onclick="alert('Added Coco Mademoiselle to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733. WhatsApp us at +255 772 312 733 with proof.')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Ombre Leather">
+                <h3>Ombre Leather</h3>
+                <p>TZS 35,000</p>
+                <button onclick="alert('Added Ombre Leather to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733. WhatsApp us at +255 772 312 733 with proof.')">Add to Cart</button>
+            </div>
         </div>
     </div>
 
@@ -240,6 +267,7 @@
         <p><strong>Why Us:</strong> Unparalleled elegance at an exquisite value—your signature awaits.</p>
     </div>
 
+    ———
     <!-- Contact Us -->
     <div class="section" id="contact">
         <h2>Connect with Us</h2>
@@ -266,7 +294,7 @@
     <!-- Blog -->
     <div class="section" id="blog">
         <h2>Fragrance Chronicles</h2>
-        <p><strong>Trends of 2025:</strong> Woody notes reign supreme this year.</p>
+        < p><strong>Trends of 2025:</strong> Woody notes reign supreme this year.</p>
         <p><strong>Scent Longevity:</strong> Layer with lotions for an enduring aura.</p>
         <p><strong>Layering Art:</strong> Blend florals and musks for a bespoke signature.</p>
     </div>
@@ -279,71 +307,71 @@
     <script>
         const perfumes = [
             // Men's Fragrances
-            { name: "Dior Homme Intense", category: "men", price: 35000 },
-            { name: "Meteore", category: "men", price: 35000 },
-            { name: "Elysium", category: "men", price: 35000 },
-            { name: "L'Immensité", category: "men", price: 35000 },
-            { name: "Oud Wood", category: "men", price: 35000 },
-            { name: "Erolfa 16", category: "men", price: 35000 },
-            { name: "Absolute Guilty (New)", category: "men", price: 35000 },
-            { name: "Amorino", category: "men", price: 35000 },
-            { name: "Luna Rosa Ocean", category: "men", price: 35000 },
-            { name: "Garanat", category: "men", price: 35000 },
-            { name: "L'Envol", category: "men", price: 35000 },
-            { name: "Black Phantom", category: "men", price: 35000 },
-            { name: "Epic for Men", category: "men", price: 35000 },
-            { name: "Nouveau Monde", category: "men", price: 35000 },
-            { name: "Patchouli Intense", category: "men", price: 35000 },
-            { name: "Italian Leather", category: "men", price: 35000 },
-            { name: "Oud Malaki", category: "men", price: 35000 },
-            { name: "Onekh Bvlgari", category: "men", price: 35000 },
-            { name: "Colonial Leather", category: "men", price: 35000 },
-            { name: "The Blazing Mr. Sam", category: "men", price: 35000 },
-            { name: "The Tragedy of Lord George", category: "men", price: 35000 },
+            { name: "Dior Homme Intense", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Meteore", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Elysium", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "L'Immensité", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Oud Wood", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Erolfa 16", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Absolute Guilty (New)", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Amorino", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Luna Rosa Ocean", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Garanat", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "L'Envol", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Black Phantom", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Epic for Men", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Nouveau Monde", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Patchouli Intense", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Italian Leather", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Oud Malaki", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Onekh Bvlgari", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Colonial Leather", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "The Blazing Mr. Sam", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "The Tragedy of Lord George", category: "men", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
             // Women's Fragrances
-            { name: "Zahira", category: "women", price: 35000 },
-            { name: "Bottega Veneta", category: "women", price: 35000 },
-            { name: "Sakura", category: "women", price: 35000 },
-            { name: "Coco Mademoiselle", category: "women", price: 35000 },
-            { name: "The Only One", category: "women", price: 35000 },
-            { name: "Delina Exclusif", category: "women", price: 35000 },
-            { name: "Lady Million", category: "women", price: 35000 },
-            { name: "The Bewitching Yasmine", category: "women", price: 35000 },
-            { name: "Because It’s You", category: "women", price: 35000 },
-            { name: "Valentino Donna", category: "women", price: 35000 },
-            { name: "L'Interdit", category: "women", price: 35000 },
-            { name: "Love Story", category: "women", price: 35000 },
-            { name: "Armani Si", category: "women", price: 35000 },
-            { name: "Gucci Bloom", category: "women", price: 35000 },
-            { name: "Chance Eau Tendre", category: "women", price: 35000 },
-            { name: "Guilty Absolute Femme", category: "women", price: 35000 },
-            { name: "Roses Vanille", category: "women", price: 35000 },
-            { name: "Love", category: "women", price: 35000 },
-            { name: "Aura", category: "women", price: 35000 },
-            { name: "Midnight Trésor", category: "women", price: 35000 },
-            { name: "Twilly d’Hermès", category: "women", price: 35000 },
-            { name: "Angel Nova", category: "women", price: 35000 },
-            { name: "Insolence", category: "women", price: 35000 },
-            { name: "Coco Noir", category: "women", price: 35000 },
-            { name: "Eau du Soir", category: "women", price: 35000 },
-            { name: "Private Collection", category: "women", price: 35000 },
-            { name: "Rose des Vents", category: "women", price: 35000 },
-            { name: "Moonlight Patchouli", category: "women", price: 35000 },
+            { name: "Zahira", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Bottega Veneta", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Sakura", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Coco Mademoiselle", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "The Only One", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Delina Exclusif", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Lady Million", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "The Bewitching Yasmine", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Because It’s You", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Valentino Donna", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "L'Interdit", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Love Story", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Armani Si", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Gucci Bloom", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Chance Eau Tendre", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Guilty Absolute Femme", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Roses Vanille", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Love", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Aura", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Midnight Trésor", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Twilly d’Hermès", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Angel Nova", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Insolence", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Coco Noir", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Eau du Soir", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Private Collection", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Rose des Vents", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Moonlight Patchouli", category: "women", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
             // Unisex Fragrances
-            { name: "Ombre Leather", category: "unisex", price: 35000 },
-            { name: "Irish Leather", category: "unisex", price: 35000 },
-            { name: "Bond No 9", category: "unisex", price: 35000 },
-            { name: "Sheikh Abdullah", category: "unisex", price: 35000 },
-            { name: "Ambre Nuit", category: "unisex", price: 35000 },
-            { name: "Liebe", category: "unisex", price: 35000 },
-            { name: "Rouge Malachite", category: "unisex", price: 35000 },
-            { name: "Halfeti Cedar", category: "unisex", price: 35000 },
-            { name: "Amber Malaki", category: "unisex", price: 35000 },
-            { name: "Opera", category: "unisex", price: 35000 },
-            { name: "Santal Royal", category: "unisex", price: 35000 },
-            { name: "Bibliothèque", category: "unisex", price: 35000 },
-            { name: "Black Saffron", category: "unisex", price: 35000 },
-            { name: "Gris Montaigne", category: "unisex", price: 35000 }
+            { name: "Ombre Leather", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Irish Leather", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Bond No 9", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Sheikh Abdullah", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Ambre Nuit", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Liebe", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Rouge Malachite", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Halfeti Cedar", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Amber Malaki", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Opera", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Santal Royal", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Bibliothèque", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1590738914899-8c117a83d2a8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Black Saffron", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" },
+            { name: "Gris Montaigne", category: "unisex", price: 35000, image: "https://images.unsplash.com/photo-1618437178310-7b3e2f6b6f2b?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" }
         ];
 
         function renderProducts(category = "all", sort = "name") {
@@ -352,6 +380,7 @@
             const list = document.getElementById("product-list");
             list.innerHTML = filtered.map(p => `
                 <div class="product">
+                    <img src="${p.image}" alt="${p.name}">
                     <h3>${p.name}</h3>
                     <p>TZS ${p.price.toLocaleString()}</p>
                     <button onclick="alert('Added ${p.name} to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733. WhatsApp us at +255 772 312 733 with proof.')">Add to Cart</button>

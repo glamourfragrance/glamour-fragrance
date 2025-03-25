@@ -13,8 +13,8 @@
             font-family: 'Poppins', sans-serif;
         }
         body {
-            background: #0F0F0F;
-            color: #D4AF37;
+            background: #FFFFFF;
+            color: #000000;
             line-height: 1.6;
             overflow-x: hidden;
         }
@@ -23,20 +23,28 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: #0F0F0F;
+            background: #FFFFFF;
             padding: 20px 0;
             z-index: 1000;
-            border-bottom: 1px solid #D4AF37;
+            border-bottom: 1px solid #E0E0E0;
         }
-        nav {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
+        }
+        .hamburger {
+            position: absolute;
+            left: 0;
+            font-size: 24px;
+            cursor: pointer;
+            display: none; /* Hidden by default, shown on mobile */
         }
         nav a {
-            color: #D4AF37;
+            color: #000000;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
@@ -46,7 +54,7 @@
             transition: color 0.3s ease;
         }
         nav a:hover {
-            color: #FFFFFF;
+            color: #D4AF37;
         }
         /* Hero Carousel */
         .hero {
@@ -107,7 +115,7 @@
         }
         .hero button {
             background: #D4AF37;
-            color: #0F0F0F;
+            color: #000000;
             border: none;
             padding: 12px 30px;
             font-size: 16px;
@@ -118,9 +126,10 @@
             border-radius: 5px;
         }
         .hero button:hover {
-            background: #FFFFFF;
+            background: #000000;
+            color: #FFFFFF;
         }
-        /* New Arrival */
+        /* Section Styling */
         .section {
             padding: 80px 0;
             max-width: 1200px;
@@ -130,11 +139,54 @@
         h2 {
             font-size: 36px;
             font-weight: 600;
-            color: #D4AF37;
+            color: #000000;
             margin-bottom: 40px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .tab {
+            font-size: 16px;
+            font-weight: 500;
+            color: #000000;
+            cursor: pointer;
+            padding-bottom: 5px;
+            transition: border-bottom 0.3s ease;
+        }
+        .tab.active {
+            border-bottom: 2px solid #D4AF37;
+        }
+        /* Shop by Brand */
+        .brands {
+            display: flex;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px 0;
+            justify-content: center;
+        }
+        .brand {
+            width: 100px;
+            height: 100px;
+            background: #F5F5F5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        .brand:hover {
+            transform: scale(1.1);
+        }
+        .brand img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        /* Products */
         .products {
             display: flex;
             flex-wrap: wrap;
@@ -142,10 +194,10 @@
             gap: 30px;
         }
         .product {
-            background: #1A1A1A;
+            background: #FFFFFF;
             width: 280px;
             padding: 20px;
-            border: 1px solid #D4AF37;
+            border: 1px solid #E0E0E0;
             border-radius: 5px;
             transition: transform 0.3s ease;
         }
@@ -161,18 +213,18 @@
         }
         .product h3 {
             font-size: 18px;
-            color: #FFFFFF;
+            color: #000000;
             font-weight: 500;
             margin-bottom: 10px;
         }
         .product p {
             font-size: 16px;
-            color: #D4AF37;
+            color: #000000;
             margin-bottom: 15px;
         }
         .product button {
             background: #D4AF37;
-            color: #0F0F0F;
+            color: #000000;
             border: none;
             padding: 10px 20px;
             font-size: 14px;
@@ -184,18 +236,19 @@
             width: 100%;
         }
         .product button:hover {
-            background: #FFFFFF;
+            background: #000000;
+            color: #FFFFFF;
         }
         /* Newsletter */
         .newsletter {
-            background: #1A1A1A;
+            background: #F5F5F5;
             padding: 60px 0;
             text-align: center;
         }
         .newsletter h2 {
-            margin-bottom: 20px;
             font-size: 24px;
             font-weight: 500;
+            margin-bottom: 20px;
         }
         .newsletter form {
             display: flex;
@@ -207,15 +260,15 @@
         .newsletter input {
             padding: 12px;
             width: 70%;
-            background: #2A2A2A;
-            color: #FFFFFF;
-            border: 1px solid #D4AF37;
+            background: #FFFFFF;
+            color: #000000;
+            border: 1px solid #E0E0E0;
             border-radius: 5px;
             font-size: 14px;
         }
         .newsletter button {
             background: #D4AF37;
-            color: #0F0F0F;
+            color: #000000;
             border: none;
             padding: 12px 30px;
             font-size: 14px;
@@ -226,41 +279,53 @@
             border-radius: 5px;
         }
         .newsletter button:hover {
-            background: #FFFFFF;
+            background: #000000;
+            color: #FFFFFF;
         }
         /* Footer */
         footer {
-            background: #0F0F0F;
+            background: #FFFFFF;
             padding: 40px 0;
             text-align: center;
-            border-top: 1px solid #D4AF37;
+            border-top: 1px solid #E0E0E0;
         }
         footer p {
             font-size: 14px;
-            color: #D4AF37;
+            color: #000000;
             margin-bottom: 10px;
         }
         footer a {
-            color: #D4AF37;
+            color: #000000;
             text-decoration: none;
             font-size: 14px;
             margin: 0 15px;
             transition: color 0.3s ease;
         }
         footer a:hover {
-            color: #FFFFFF;
+            color: #D4AF37;
+        }
+        @media (max-width: 768px) {
+            .hamburger {
+                display: block;
+            }
+            nav {
+                display: none; /* Toggle with JS later */
+            }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="shop.html">Shop</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact Us</a>
-        </nav>
+        <div class="nav-container">
+            <div class="hamburger">☰</div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+        </div>
     </header>
 
     <!-- Hero Carousel -->
@@ -276,9 +341,31 @@
         </div>
     </div>
 
-    <!-- New Arrival -->
+    <!-- Shop by Brand -->
     <div class="section">
-        <h2>New Arrival</h2>
+        <h2>Shop by Brand</h2>
+        <div class="tabs">
+            <div class="tab active">Men</div>
+            <div class="tab">Women</div>
+            <div class="tab">Unisex</div>
+        </div>
+        <div class="brands">
+            <div class="brand"><img src="https://i.imgur.com/YOUR_CREED_URL.png" alt="Creed"></div>
+            <div class="brand"><img src="https://i.imgur.com/YOUR_CHANEL_URL.png" alt="Chanel"></div>
+            <div class="brand"><img src="https://i.imgur.com/YOUR_DIOR_URL.png" alt="Dior"></div>
+            <div class="brand"><img src="https://i.imgur.com/YOUR_GUCCI_URL.png" alt="Gucci"></div>
+            <div class="brand"><img src="https://i.imgur.com/YOUR_TOMFORD_URL.png" alt="Tom Ford"></div>
+        </div>
+    </div>
+
+    <!-- Top Sellers -->
+    <div class="section">
+        <h2>Top Sellers</h2>
+        <div class="tabs">
+            <div class="tab active">Men</div>
+            <div class="tab">Women</div>
+            <div class="tab">Unisex</div>
+        </div>
         <div class="products">
             <div class="product">
                 <img src="https://i.imgur.com/YOUR_DIOR_URL.png" alt="Dior Homme Intense">
@@ -286,6 +373,31 @@
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Dior Homme Intense to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
+            <div class="product">
+                <img src="https://i.imgur.com/YOUR_METEORE_URL.png" alt="Meteore">
+                <h3>Meteore</h3>
+                <p>TZS 35,000</p>
+                <button onclick="alert('Added Meteore to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://i.imgur.com/YOUR_OUDWOOD_URL.png" alt="Oud Wood">
+                <h3>Oud Wood</h3>
+                <p>TZS 35,000</p>
+                <button onclick="alert('Added Oud Wood to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://i.imgur.com/YOUR_EROLFA_URL.png" alt="Erolfa 16">
+                <h3>Erolfa 16</h3>
+                <p>TZS 35,000</p>
+                <button onclick="alert('Added Erolfa 16 to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Arrival -->
+    <div class="section">
+        <h2>New Arrival</h2>
+        <div class="products">
             <div class="product">
                 <img src="https://i.imgur.com/YOUR_COCO_URL.png" alt="Coco Mademoiselle">
                 <h3>Coco Mademoiselle</h3>
@@ -303,6 +415,12 @@
                 <h3>Delina Exclusif</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Delina Exclusif to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="https://i.imgur.com/YOUR_GUCCI_URL.png" alt="Gucci Bloom">
+                <h3>Gucci Bloom</h3>
+                <p>TZS 35,000</p>
+                <button onclick="alert('Added Gucci Bloom to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
         </div>
     </div>
@@ -325,5 +443,17 @@
             <a href="#">Returns</a>
         </div>
     </footer>
+
+    <script>
+        // Basic tab functionality (static for now)
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tab.parentElement.querySelector('.active').classList.remove('active');
+                tab.classList.add('active');
+                // Add dynamic content switching here later if needed
+            });
+        });
+    </script>
 </body>
 </html>

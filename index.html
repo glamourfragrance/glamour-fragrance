@@ -48,44 +48,62 @@
         nav a:hover {
             color: #FFFFFF;
         }
-        /* Hero Section */
+        /* Hero Carousel */
         .hero {
             height: 100vh;
-            background: url('https://i.imgur.com/3UjXGgG.jpeg') center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
             position: relative;
+            overflow: hidden;
         }
-        .hero::after {
-            content: '';
+        .carousel {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1;
+            animation: slide 15s infinite;
+        }
+        .carousel div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .carousel div:nth-child(1) {
+            background-image: url('https://i.imgur.com/3UjXGgG.jpeg');
+            opacity: 1;
+        }
+        .carousel div:nth-child(2) {
+            background-image: url('https://i.imgur.com/YOUR_COUPLE_URL.png');
+        }
+        .carousel div:nth-child(3) {
+            background-image: url('https://i.imgur.com/YOUR_BOTTLE_URL.png');
+        }
+        @keyframes slide {
+            0%, 33% { /* First image */ }
+            33.1% { div:nth-child(1) { opacity: 0; } div:nth-child(2) { opacity: 1; } }
+            66% { /* Second image */ }
+            66.1% { div:nth-child(2) { opacity: 0; } div:nth-child(3) { opacity: 1; } }
+            99% { /* Third image */ }
+            99.1% { div:nth-child(3) { opacity: 0; } div:nth-child(1) { opacity: 1; } }
         }
         .hero-content {
-            position: relative;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
             z-index: 2;
         }
         .hero h1 {
             font-size: 60px;
             font-weight: 700;
             color: #FFFFFF;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 2px;
-        }
-        .hero p {
-            font-size: 20px;
-            font-weight: 300;
-            color: #D4AF37;
-            margin-bottom: 30px;
         }
         .hero button {
             background: #D4AF37;
@@ -101,9 +119,8 @@
         }
         .hero button:hover {
             background: #FFFFFF;
-            color: #0F0F0F;
         }
-        /* Featured Products */
+        /* New Arrival */
         .section {
             padding: 80px 0;
             max-width: 1200px;
@@ -130,11 +147,10 @@
             padding: 20px;
             border: 1px solid #D4AF37;
             border-radius: 5px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease;
         }
         .product:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
         }
         .product img {
             width: 100%;
@@ -178,6 +194,8 @@
         }
         .newsletter h2 {
             margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 500;
         }
         .newsletter form {
             display: flex;
@@ -245,16 +263,20 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Carousel -->
     <div class="hero">
+        <div class="carousel">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
         <div class="hero-content">
             <h1>Glamour Fragrance</h1>
-            <p>Luxury Scents for Every Soul</p>
             <button onclick="location.href='shop.html'">Shop Now</button>
         </div>
     </div>
 
-    <!-- Featured Products -->
+    <!-- New Arrival -->
     <div class="section">
         <h2>New Arrival</h2>
         <div class="products">

@@ -40,8 +40,9 @@
             position: absolute;
             left: 0;
             font-size: 24px;
+            color: #000000;
             cursor: pointer;
-            display: none; /* Hidden by default, shown on mobile */
+            display: none;
         }
         nav a {
             color: #000000;
@@ -122,7 +123,7 @@
             font-weight: 500;
             text-transform: uppercase;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
             border-radius: 5px;
         }
         .hero button:hover {
@@ -231,7 +232,7 @@
             font-weight: 500;
             text-transform: uppercase;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
             border-radius: 5px;
             width: 100%;
         }
@@ -275,7 +276,7 @@
             font-weight: 500;
             text-transform: uppercase;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
             border-radius: 5px;
         }
         .newsletter button:hover {
@@ -445,13 +446,13 @@
     </footer>
 
     <script>
-        // Basic tab functionality (static for now)
+        // Basic tab functionality
         const tabs = document.querySelectorAll('.tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tab.parentElement.querySelector('.active').classList.remove('active');
                 tab.classList.add('active');
-                // Add dynamic content switching here later if needed
+                // Placeholder for dynamic content switching (to be added later)
             });
         });
     </script>

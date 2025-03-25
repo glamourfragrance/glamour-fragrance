@@ -44,6 +44,9 @@
             cursor: pointer;
             display: none;
         }
+        nav {
+            display: flex;
+        }
         nav a {
             color: #000000;
             text-decoration: none;
@@ -57,6 +60,19 @@
         nav a:hover {
             color: #D4AF37;
         }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            padding: 10px;
+        }
+        .dropdown a {
+            display: block;
+            margin: 10px 0;
+        }
         /* Hero Carousel */
         .hero {
             height: 100vh;
@@ -64,39 +80,34 @@
             overflow: hidden;
         }
         .carousel {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
+            width: 300%;
             height: 100%;
+            display: flex;
             animation: slide 15s infinite;
         }
         .carousel div {
-            position: absolute;
-            width: 100%;
+            width: 33.33%;
             height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0;
-            transition: opacity 1s ease;
         }
         .carousel div:nth-child(1) {
             background-image: url('https://i.imgur.com/3UjXGgG.jpeg');
-            opacity: 1;
         }
         .carousel div:nth-child(2) {
-            background-image: url('https://i.imgur.com/YOUR_COUPLE_URL.png');
+            background-image: url('https://via.placeholder.com/1200x800?text=Couple');
         }
         .carousel div:nth-child(3) {
-            background-image: url('https://i.imgur.com/YOUR_BOTTLE_URL.png');
+            background-image: url('https://via.placeholder.com/1200x800?text=Bottle');
         }
         @keyframes slide {
-            0%, 33% { /* First image */ }
-            33.1% { div:nth-child(1) { opacity: 0; } div:nth-child(2) { opacity: 1; } }
-            66% { /* Second image */ }
-            66.1% { div:nth-child(2) { opacity: 0; } div:nth-child(3) { opacity: 1; } }
-            99% { /* Third image */ }
-            99.1% { div:nth-child(3) { opacity: 0; } div:nth-child(1) { opacity: 1; } }
+            0% { transform: translateX(0); }
+            33% { transform: translateX(0); }
+            33.1% { transform: translateX(-33.33%); }
+            66% { transform: translateX(-33.33%); }
+            66.1% { transform: translateX(-66.66%); }
+            99% { transform: translateX(-66.66%); }
+            99.1% { transform: translateX(0); }
         }
         .hero-content {
             position: absolute;
@@ -132,7 +143,7 @@
         }
         /* Section Styling */
         .section {
-            padding: 80px 0;
+            padding: 60px 0;
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
@@ -141,7 +152,7 @@
             font-size: 36px;
             font-weight: 600;
             color: #000000;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 1.5px;
         }
@@ -149,7 +160,7 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .tab {
             font-size: 16px;
@@ -192,12 +203,12 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 30px;
+            gap: 20px;
         }
         .product {
             background: #FFFFFF;
             width: 280px;
-            padding: 20px;
+            padding: 15px;
             border: 1px solid #E0E0E0;
             border-radius: 5px;
             transition: transform 0.3s ease;
@@ -210,18 +221,18 @@
             height: 250px;
             object-fit: cover;
             border-radius: 5px;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
         .product h3 {
             font-size: 18px;
             color: #000000;
             font-weight: 500;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         .product p {
             font-size: 16px;
             color: #000000;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .product button {
             background: #D4AF37;
@@ -310,7 +321,10 @@
                 display: block;
             }
             nav {
-                display: none; /* Toggle with JS later */
+                display: none;
+            }
+            .dropdown {
+                display: block;
             }
         }
     </style>
@@ -319,13 +333,20 @@
     <!-- Header -->
     <header>
         <div class="nav-container">
-            <div class="hamburger">☰</div>
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
             <nav>
                 <a href="index.html">Home</a>
                 <a href="shop.html">Shop</a>
                 <a href="about.html">About Us</a>
                 <a href="contact.html">Contact Us</a>
             </nav>
+            <div class="dropdown" id="dropdown">
+                <a href="#">Collections</a>
+                <a href="#">Blog</a>
+                <a href="shop.html">Shop</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+            </div>
         </div>
     </header>
 
@@ -351,11 +372,11 @@
             <div class="tab">Unisex</div>
         </div>
         <div class="brands">
-            <div class="brand"><img src="https://i.imgur.com/YOUR_CREED_URL.png" alt="Creed"></div>
-            <div class="brand"><img src="https://i.imgur.com/YOUR_CHANEL_URL.png" alt="Chanel"></div>
-            <div class="brand"><img src="https://i.imgur.com/YOUR_DIOR_URL.png" alt="Dior"></div>
-            <div class="brand"><img src="https://i.imgur.com/YOUR_GUCCI_URL.png" alt="Gucci"></div>
-            <div class="brand"><img src="https://i.imgur.com/YOUR_TOMFORD_URL.png" alt="Tom Ford"></div>
+            <div class="brand"><img src="https://via.placeholder.com/80?text=Creed" alt="Creed"></div>
+            <div class="brand"><img src="https://via.placeholder.com/80?text=Chanel" alt="Chanel"></div>
+            <div class="brand"><img src="https://via.placeholder.com/80?text=Dior" alt="Dior"></div>
+            <div class="brand"><img src="https://via.placeholder.com/80?text=Gucci" alt="Gucci"></div>
+            <div class="brand"><img src="https://via.placeholder.com/80?text=Tom+Ford" alt="Tom Ford"></div>
         </div>
     </div>
 
@@ -369,25 +390,25 @@
         </div>
         <div class="products">
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_DIOR_URL.png" alt="Dior Homme Intense">
+                <img src="https://via.placeholder.com/280x250?text=Dior+Homme" alt="Dior Homme Intense">
                 <h3>Dior Homme Intense</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Dior Homme Intense to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_METEORE_URL.png" alt="Meteore">
+                <img src="https://via.placeholder.com/280x250?text=Meteore" alt="Meteore">
                 <h3>Meteore</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Meteore to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_OUDWOOD_URL.png" alt="Oud Wood">
+                <img src="https://via.placeholder.com/280x250?text=Oud+Wood" alt="Oud Wood">
                 <h3>Oud Wood</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Oud Wood to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_EROLFA_URL.png" alt="Erolfa 16">
+                <img src="https://via.placeholder.com/280x250?text=Erolfa" alt="Erolfa 16">
                 <h3>Erolfa 16</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Erolfa 16 to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
@@ -400,25 +421,25 @@
         <h2>New Arrival</h2>
         <div class="products">
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_COCO_URL.png" alt="Coco Mademoiselle">
+                <img src="https://via.placeholder.com/280x250?text=Coco" alt="Coco Mademoiselle">
                 <h3>Coco Mademoiselle</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Coco Mademoiselle to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_OMBRE_URL.png" alt="Ombre Leather">
+                <img src="https://via.placeholder.com/280x250?text=Ombre" alt="Ombre Leather">
                 <h3>Ombre Leather</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Ombre Leather to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_DELINA_URL.png" alt="Delina Exclusif">
+                <img src="https://via.placeholder.com/280x250?text=Delina" alt="Delina Exclusif">
                 <h3>Delina Exclusif</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Delina Exclusif to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
             </div>
             <div class="product">
-                <img src="https://i.imgur.com/YOUR_GUCCI_URL.png" alt="Gucci Bloom">
+                <img src="https://via.placeholder.com/280x250?text=Gucci" alt="Gucci Bloom">
                 <h3>Gucci Bloom</h3>
                 <p>TZS 35,000</p>
                 <button onclick="alert('Added Gucci Bloom to cart! Pay TZS 35,000 via M-Pesa to +255 772 312 733.')">Add to Cart</button>
@@ -446,13 +467,18 @@
     </footer>
 
     <script>
-        // Basic tab functionality
+        // Hamburger menu toggle
+        function toggleMenu() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Tab functionality
         const tabs = document.querySelectorAll('.tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 tab.parentElement.querySelector('.active').classList.remove('active');
                 tab.classList.add('active');
-                // Placeholder for dynamic content switching (to be added later)
             });
         });
     </script>

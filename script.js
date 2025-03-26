@@ -1,25 +1,74 @@
 document.addEventListener("DOMContentLoaded", () => {
     const products = [
-        { name: "Dior Homme Intense", category: "Men", price: "$99", image: "assets/dior.jpg" },
-        { name: "Lady Million", category: "Women", price: "$95", image: "assets/lady-million.jpg" },
-        { name: "Ombre Leather", category: "Unisex", price: "$120", image: "assets/ombre.jpg" }
+        // Men's Fragrances
+        { name: "Dior Homme Intense", category: "men", price: 99, image: "assets/dior.jpg" },
+        { name: "Meteore", category: "men", price: 110, image: "assets/meteore.jpg" },
+        { name: "Elysium", category: "men", price: 120, image: "assets/elysium.jpg" },
+        { name: "L'Immensité", category: "men", price: 105, image: "assets/limmensite.jpg" },
+        { name: "Oud Wood", category: "men", price: 130, image: "assets/oud-wood.jpg" },
+        { name: "Erolfa 16", category: "men", price: 95, image: "assets/erolfa.jpg" },
+        { name: "Absolute Guilty (New)", category: "men", price: 125, image: "assets/guilty.jpg" },
+        { name: "Amorino", category: "men", price: 100, image: "assets/amorino.jpg" },
+        { name: "Luna Rosa Ocean", category: "men", price: 90, image: "assets/luna-rosa.jpg" },
+        { name: "Garanat", category: "men", price: 115, image: "assets/garanat.jpg" },
+        { name: "L'Envol", category: "men", price: 98, image: "assets/lenvol.jpg" },
+        { name: "Black Phantom", category: "men", price: 135, image: "assets/black-phantom.jpg" },
+        { name: "Epic for Men", category: "men", price: 140, image: "assets/epic.jpg" },
+        { name: "Nouveau Monde", category: "men", price: 125, image: "assets/nouveau-monde.jpg" },
+        { name: "Patchouli Intense", category: "men", price: 110, image: "assets/patchouli.jpg" },
+        { name: "Italian Leather", category: "men", price: 115, image: "assets/italian-leather.jpg" },
+        { name: "Oud Malaki", category: "men", price: 130, image: "assets/oud-malaki.jpg" },
+        { name: "Onekh Bvlgari", category: "men", price: 140, image: "assets/onekh.jpg" },
+        { name: "Colonial Leather", category: "men", price: 120, image: "assets/colonial-leather.jpg" },
+        { name: "The Blazing Mr. Sam", category: "men", price: 135, image: "assets/mr-sam.jpg" },
+        { name: "The Tragedy of Lord George", category: "men", price: 150, image: "assets/lord-george.jpg" },
+
+        // Women's Fragrances
+        { name: "Zahira", category: "women", price: 85, image: "assets/zahira.jpg" },
+        { name: "Bottega Veneta", category: "women", price: 95, image: "assets/bottega.jpg" },
+        { name: "Sakura", category: "women", price: 100, image: "assets/sakura.jpg" },
+        { name: "Coco Mademoiselle", category: "women", price: 120, image: "assets/coco-mademoiselle.jpg" },
+        { name: "The Only One", category: "women", price: 110, image: "assets/the-only-one.jpg" },
+        { name: "Delina Exclusif", category: "women", price: 140, image: "assets/delina.jpg" },
+        { name: "Lady Million", category: "women", price: 95, image: "assets/lady-million.jpg" },
+        { name: "The Bewitching Yasmine", category: "women", price: 130, image: "assets/yasmine.jpg" },
+        { name: "Because It’s You", category: "women", price: 105, image: "assets/because-you.jpg" },
+        { name: "Valentino Donna", category: "women", price: 115, image: "assets/valentino.jpg" },
+        { name: "L'Interdit", category: "women", price: 125, image: "assets/linterdit.jpg" },
+        { name: "Love Story", category: "women", price: 115, image: "assets/love-story.jpg" },
+        { name: "Armani Si", category: "women", price: 130, image: "assets/armani-si.jpg" },
+        { name: "Gucci Bloom", category: "women", price: 85, image: "assets/gucci-bloom.jpg" },
+        { name: "Chance Eau Tendre", category: "women", price: 100, image: "assets/chance.jpg" },
+        { name: "Guilty Absolute Femme", category: "women", price: 110, image: "assets/guilty-femme.jpg" },
+        { name: "Roses Vanille", category: "women", price: 120, image: "assets/roses-vanille.jpg" },
+        { name: "Love", category: "women", price: 125, image: "assets/love.jpg" },
+        { name: "Aura", category: "women", price: 130, image: "assets/aura.jpg" },
+        { name: "Midnight Trésor", category: "women", price: 135, image: "assets/midnight.jpg" },
+        { name: "Twilly d’Hermès", category: "women", price: 125, image: "assets/twilly.jpg" },
+        { name: "Angel Nova", category: "women", price: 130, image: "assets/angel-nova.jpg" },
+        { name: "Insolence", category: "women", price: 135, image: "assets/insolence.jpg" },
+        { name: "Coco Noir", category: "women", price: 145, image: "assets/coco-noir.jpg" },
+        { name: "Eau du Soir", category: "women", price: 150, image: "assets/eau-du-soir.jpg" },
+        { name: "Private Collection", category: "women", price: 160, image: "assets/private.jpg" },
+        { name: "Rose des Vents", category: "women", price: 140, image: "assets/rose-vents.jpg" },
+        { name: "Moonlight Patchouli", category: "women", price: 145, image: "assets/moonlight.jpg" },
+
+        // Unisex Fragrances
+        { name: "Ombre Leather", category: "unisex", price: 120, image: "assets/ombre.jpg" },
+        { name: "Irish Leather", category: "unisex", price: 110, image: "assets/irish-leather.jpg" },
+        { name: "Bond No 9", category: "unisex", price: 125, image: "assets/bond9.jpg" },
+        { name: "Sheikh Abdullah", category: "unisex", price: 130, image: "assets/sheikh.jpg" },
+        { name: "Ambre Nuit", category: "unisex", price: 140, image: "assets/ambre-nuit.jpg" },
+        { name: "Liebe", category: "unisex", price: 115, image: "assets/liebe.jpg" },
+        { name: "Rouge Malachite", category: "unisex", price: 135, image: "assets/rouge.jpg" },
+        { name: "Halfeti Cedar", category: "unisex", price: 145, image: "assets/halfeti.jpg" },
+        { name: "Amber Malaki", category: "unisex", price: 150, image: "assets/amber.jpg" },
+        { name: "Opera", category: "unisex", price: 155, image: "assets/opera.jpg" },
+        { name: "Santal Royal", category: "unisex", price: 160, image: "assets/santal.jpg" },
+        { name: "Bibliothèque", category: "unisex", price: 135, image: "assets/bibliotheque.jpg" },
+        { name: "Black Saffron", category: "unisex", price: 140, image: "assets/saffron.jpg" },
+        { name: "Gris Montaigne", category: "unisex", price: 145, image: "assets/gris.jpg" },
     ];
 
-    let featuredHTML = "";
-    products.forEach(product => {
-        featuredHTML += `
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="${product.image}" class="card-img-top" alt="${product.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${product.name}</h5>
-                        <p>${product.category} Fragrance</p>
-                        <p>${product.price}</p>
-                        <a href="shop.html" class="btn btn-dark">View</a>
-                    </div>
-                </div>
-            </div>`;
-    });
-
-    document.getElementById("featured-products").innerHTML = featuredHTML;
+    renderProducts(products);
 });

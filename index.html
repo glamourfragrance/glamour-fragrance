@@ -28,19 +28,50 @@
         .hero .badge { background: #b08c5b; color: #FFFFFF; padding: 4px 16px; font-size: 12px; margin-top: 16px; }
         .section { padding: 48px 32px; max-width: 1280px; margin: 0 auto; text-align: center; }
         h2 { font-size: 36px; font-weight: 600; margin-bottom: 32px; }
+        .categories { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .category { position: relative; aspect-ratio: 3/4; overflow: hidden; border-radius: 8px; cursor: pointer; }
+        .category img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
+        .category:hover img { transform: scale(1.05); }
+        .category h3 { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-family: 'Playfair Display', serif; font-size: 48px; }
         .tabs { display: flex; border-bottom: 1px solid #E0E0E0; margin-bottom: 32px; justify-content: center; }
         .tab { padding-bottom: 8px; margin: 0 32px; font-size: 14px; font-weight: 500; cursor: pointer; color: #6B7280; }
         .tab.active { color: #000000; border-bottom: 2px solid #000000; }
-        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+        .products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
         .product { text-align: left; }
         .product .image-wrapper { position: relative; aspect-ratio: 1; background: #F0F7FF; border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
         .product img { width: 100%; height: 100%; object-fit: cover; }
         .product .heart { position: absolute; top: 8px; right: 8px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; padding: 6px; cursor: pointer; }
         .product h3 { font-size: 16px; font-weight: 500; }
+        .product .label { font-size: 12px; color: #6B7280; }
+        .product .value { font-size: 12px; font-weight: 500; }
         .product .prices { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
         .product .original { color: #9CA3AF; text-decoration: line-through; font-size: 14px; }
         .product .sale { font-size: 16px; font-weight: 500; }
         .product button { background: #000000; color: #FFFFFF; border: none; padding: 8px; border-radius: 4px; cursor: pointer; }
+        .collection-section { padding: 48px 32px; max-width: 1280px; margin: 0 auto; }
+        .collection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+        .collection-category { 
+            background: #F5F5F5; 
+            padding: 24px; 
+            border-radius: 8px; 
+            text-align: left; 
+        }
+        .collection-category h3 { 
+            margin-bottom: 16px; 
+            font-size: 24px; 
+            border-bottom: 2px solid #b08c5b; 
+            padding-bottom: 8px; 
+        }
+        .collection-category ul { 
+            list-style-type: none; 
+            columns: 2; 
+            -webkit-columns: 2; 
+            -moz-columns: 2; 
+        }
+        .collection-category li { 
+            margin-bottom: 8px; 
+            font-size: 14px; 
+        }
         .newsletter { background: #F5F5F5; padding: 48px 32px; text-align: center; }
         .newsletter h2 { font-size: 24px; margin-bottom: 16px; }
         .newsletter form { display: flex; justify-content: center; gap: 8px; max-width: 600px; margin: 0 auto; }
@@ -59,12 +90,12 @@
         footer a:hover { color: #FFFFFF; }
         .footer-bottom { border-top: 1px solid #374151; padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
         .payment-icons img { width: 40px; height: 24px; margin: 0 4px; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .icons { display: none; }
-            .products { grid-template-columns: repeat(2, 1fr); }
+            .categories, .products { grid-template-columns: repeat(2, 1fr); }
+            .collection-grid { grid-template-columns: 1fr; }
+            .collection-category ul { columns: 1; }
         }
     </style>
 </head>
@@ -79,10 +110,13 @@
             <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
             <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></button>
             <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
-            <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+            <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
         </div>
         <div class="dropdown" id="dropdown">
             <a href="#shop-by-brand">Shop by Brand</a>
+            <a href="#top-sellers">Top Sellers</a>
+            <a href="#new-arrival">New Arrival</a>
+            <a href="#collection">Full Collection</a>
             <a href="#about">About Us</a>
             <a href="#contact">Contact</a>
         </div>
@@ -102,139 +136,206 @@
     <!-- Shop by Brand -->
     <section class="section" id="shop-by-brand">
         <h2>Shop by Brand</h2>
+        <div class="categories">
+            <div class="category">
+                <img src="https://via.placeholder.com/300x400?text=Men" alt="Men">
+                <h3>MEN</h3>
+            </div>
+            <div class="category">
+                <img src="https://via.placeholder.com/300x400?text=Women" alt="Women">
+                <h3>WOMEN</h3>
+            </div>
+            <div class="category">
+                <img src="https://via.placeholder.com/300x400?text=Unisex" alt="Unisex">
+                <h3>UNISEX</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Sellers -->
+    <section class="section" id="top-sellers">
+        <h2>Top Sellers</h2>
         <div class="tabs">
-            <div class="tab active" onclick="showTab('men')">MEN</div>
-            <div class="tab" onclick="showTab('women')">WOMEN</div>
-            <div class="tab" onclick="showTab('unisex')">UNISEX</div>
+            <div class="tab active">MEN</div>
+            <div class="tab">WOMEN</div>
+            <div class="tab">UNISEX</div>
         </div>
-
-        <!-- Men’s Fragrances (21) -->
-        <div class="tab-content active" id="men">
-            <div class="products">
-                <!-- Product Template Repeated for Each -->
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300" alt="Dior Homme Intense">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>Dior Homme Intense</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
+        <div class="products">
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Dior" alt="Dior Homme Intense">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                 </div>
-                <!-- Repeat for all 21 Men’s Perfumes -->
-                <!-- List: Meteore, Elysium, L'Immensité, Oud Wood, Erolfa 16, Absolute Guilty (New), Amorino, Luna Rosa Ocean, Garanat, L'Envol, Black Phantom, Epic for Men, Nouveau Monde, Patchouli Intense, Italian Leather, Oud Malaki, Onekh Bvlgari, Colonial Leather, The Blazing Mr. Sam, The Tragedy of Lord George -->
-                <!-- For brevity, I’ll list only titles in comments, but assume each has the full product HTML as above -->
+                <h3>Dior Homme Intense</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Homme Intense</p>
+                <p class="label">Brand</p>
+                <p class="value">DIOR</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
             </div>
+            <!-- Add more top sellers here -->
         </div>
+    </section>
 
-        <!-- Women’s Fragrances (17) -->
-        <div class="tab-content" id="women">
-            <div class="products">
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300" alt="Zahira">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>Zahira</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
-                </div>
-                <!-- Repeat for all 17 Women’s Perfumes -->
-                <!-- List: Bottega Veneta, Sakura, Coco Mademoiselle, The Only One, Delina Exclusif, Lady Million, The Bewitching Yasmine, Because It’s You, Valentino Donna, L'Interdit, Love Story, Armani Si, Gucci Bloom, Chance Eau Tendre, Guilty Absolute Femme, Roses Vanille -->
+    <!-- Full Collection -->
+    <section class="collection-section" id="collection">
+        <h2>Our Complete Fragrance Collection</h2>
+        <div class="collection-grid">
+            <div class="collection-category">
+                <h3>Men's Fragrances</h3>
+                <ul>
+                    <li>Dior Homme Intense</li>
+                    <li>Meteore</li>
+                    <li>Elysium</li>
+                    <li>L'Immensité</li>
+                    <li>Oud Wood</li>
+                    <li>Erolfa 16</li>
+                    <li>Absolute Guilty (New)</li>
+                    <li>Amorino</li>
+                    <li>Luna Rosa Ocean</li>
+                    <li>Garanat</li>
+                    <li>L'Envol</li>
+                    <li>Black Phantom</li>
+                    <li>Epic for Men</li>
+                    <li>Nouveau Monde</li>
+                    <li>Patchouli Intense</li>
+                    <li>Italian Leather</li>
+                    <li>Oud Malaki</li>
+                    <li>Onekh Bvlgari</li>
+                    <li>Colonial Leather</li>
+                    <li>The Blazing Mr. Sam</li>
+                    <li>The Tragedy of Lord George</li>
+                </ul>
             </div>
-        </div>
-
-        <!-- Unisex Fragrances (16) -->
-        <div class="tab-content" id="unisex">
-            <div class="products">
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300" alt="Santal 33">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>Santal 33</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
-                </div>
-                <!-- Repeat for all 16 Unisex Perfumes -->
-                <!-- List: Oud Ispahan, Reflection 45, Bois D’Argent, Neroli Portofino, Tuscan Leather, Straight to Heaven, Ombre Nomade, Rose 31, Amber Absolute, Fleur de Peau, Bois Doré, Ambre Nuit, Oud Satin Mood, Royal Oud, Velvet Desert Oud, Herod -->
+            <div class="collection-category">
+                <h3>Women's Fragrances</h3>
+                <ul>
+                    <li>Zahira</li>
+                    <li>Bottega Veneta</li>
+                    <li>Sakura</li>
+                    <li>Coco Mademoiselle</li>
+                    <li>The Only One</li>
+                    <li>Delina Exclusif</li>
+                    <li>Lady Million</li>
+                    <li>The Bewitching Yasmine</li>
+                    <li>Because It's You</li>
+                    <li>Valentino Donna</li>
+                    <li>L'Interdit</li>
+                    <li>Love Story</li>
+                    <li>Armani Si</li>
+                    <li>Gucci Bloom</li>
+                    <li>Chance Eau Tendre</li>
+                    <li>Guilty Absolute Femme</li>
+                    <li>Roses Vanille</li>
+                    <li>Love</li>
+                    <li>Aura</li>
+                    <li>Midnight Trésor</li>
+                    <li>Twilly d'Hermès</li>
+                    <li>Angel Nova</li>
+                    <li>Insolence</li>
+                    <li>Coco Noir</li>
+                    <li>Eau du Soir</li>
+                    <li>Private Collection</li>
+                    <li>Rose des Vents</li>
+                    <li>Moonlight Patchouli</li>
+                </ul>
+            </div>
+            <div class="collection-category">
+                <h3>Unisex Fragrances</h3>
+                <ul>
+                    <li>Ombre Leather</li>
+                    <li>Irish Leather</li>
+                    <li>Bond No 9</li>
+                    <li>Sheikh Abdullah</li>
+                    <li>Ambre Nuit</li>
+                    <li>Liebe</li>
+                    <li>Rouge Malachite</li>
+                    <li>Halfeti Cedar</li>
+                    <li>Amber Malaki</li>
+                    <li>Opera</li>
+                    <li>Santal Royal</li>
+                    <li>Bibliothèque</li>
+                    <li>Black Saffron</li>
+                    <li>Gris Montaigne</li>
+                </ul>
             </div>
         </div>
     </section>
 
     <!-- Newsletter -->
-    <section class="newsletter">
-        <h2>Subscribe to Our Newsletter</h2>
+    <div class="newsletter">
+        <h2>Stay up to date with our latest news and products</h2>
         <form>
             <input type="email" placeholder="Enter your email" required>
             <button type="submit">Subscribe</button>
         </form>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer>
+    <footer id="contact">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="https://via.placeholder.com/180x40?text=Glamour+Fragrance" alt="Glamour Fragrance">
+                <img src="https://via.placeholder.com/120x60?text=Glamour+Fragrance" alt="Glamour Fragrance">
                 <div class="social-icons">
-                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
-                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
                 </div>
             </div>
             <div>
-                <h3>Quick Links</h3>
+                <h3>Useful Links</h3>
                 <ul>
                     <li><a href="#shop-by-brand">Shop</a></li>
+                    <li><a href="#faq">FAQs</a></li>
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
             <div>
-                <h3>Customer Service</h3>
+                <h3>My Account</h3>
                 <ul>
-                    <li><a href="#">Shipping Policy</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#account">Account details</a></li>
+                    <li><a href="#addresses">Addresses</a></li>
+                    <li><a href="#orders">Orders</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Glamour Fragrance. All rights reserved.</p>
+            <p>© 2025 Glamour Fragrance. All rights reserved.</p>
             <div class="payment-icons">
-                <img src="https://via.placeholder.com/40x24?text=Visa" alt="Visa">
-                <img src="https://via.placeholder.com/40x24?text=Mastercard" alt="Mastercard">
-                <img src="https://via.placeholder.com/40x24?text=PayPal" alt="PayPal">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+            </div>
+            <div class="footer-links">
+                <a href="#terms">Terms and Conditions</a>
+                <a href="#delivery">Delivery Information</a>
+                <a href="#privacy">Privacy Policy</a>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
         function toggleMenu() {
             const dropdown = document.getElementById('dropdown');
             dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         }
-
-        function showTab(tabId) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
-            
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contents.forEach(content => content.classList.remove('active'));
-            
-            document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
-            document.getElementById(tabId).classList.add('active');
-        }
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tab.parentElement.querySelector('.active').classList.remove('active');
+                tab.classList.add('active');
+            });
+        });
     </script>
 </body>
 </html>

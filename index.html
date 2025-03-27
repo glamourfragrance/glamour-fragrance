@@ -3,44 +3,643 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GLAMOUR FRAGRANCE | Luxury Perfumes</title>
-    <link rel="stylesheet" href="assets/styles.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Glamour Fragrance - Luxury Scents</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: #FFFFFF;
+            color: #000000;
+            line-height: 1.6;
+        }
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: #000000;
+            color: #FFFFFF;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .hamburger {
+            padding: 8px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .logo img {
+            height: 32px;
+            width: auto;
+        }
+        .icons {
+            display: flex;
+            gap: 16px;
+        }
+        .icons button {
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            padding: 8px;
+            cursor: pointer;
+        }
+        .icons svg {
+            width: 20px;
+            height: 20px;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #000000;
+            padding: 16px;
+            width: 200px;
+        }
+        .dropdown a {
+            color: #FFFFFF;
+            text-decoration: none;
+            display: block;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        .dropdown a:hover {
+            color: #b08c5b;
+        }
+        /* Hero */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #F5F5F5;
+            overflow: hidden;
+            text-align: center;
+        }
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #b08c5b;
+        }
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 30px;
+        }
+        .hero .discount {
+            font-family: 'Playfair Display', serif;
+            font-size: 90px;
+            font-weight: 300;
+            line-height: 1;
+        }
+        .hero .discount span {
+            font-size: 60px;
+        }
+        .hero p {
+            letter-spacing: 2px;
+            font-size: 14px;
+            margin: 8px 0;
+        }
+        .hero .badge {
+            background: #b08c5b;
+            color: #FFFFFF;
+            padding: 4px 16px;
+            font-size: 12px;
+            margin-top: 16px;
+        }
+        /* Sections */
+        .section {
+            padding: 48px 32px;
+            max-width: 1280px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h2 {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+        /* Shop by Brand */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .category {
+            position: relative;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .category img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .category:hover img {
+            transform: scale(1.05);
+        }
+        .category h3 {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+        }
+        /* Top Sellers & New Arrival */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #E0E0E0;
+            margin-bottom: 32px;
+            justify-content: center;
+        }
+        .tab {
+            padding-bottom: 8px;
+            margin: 0 32px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #6B7280;
+        }
+        .tab.active {
+            color: #000000;
+            border-bottom: 2px solid #000000;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .product {
+            text-align: left;
+        }
+        .product .image-wrapper {
+            position: relative;
+            aspect-ratio: 1;
+            background: #F0F7FF;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+        .product img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .product .heart {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            padding: 6px;
+            cursor: pointer;
+        }
+        .product h3 {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .product .label {
+            font-size: 12px;
+            color: #6B7280;
+        }
+        .product .value {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .product .prices {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+        .product .original {
+            color: #9CA3AF;
+            text-decoration: line-through;
+            font-size: 14px;
+        }
+        .product .sale {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .product button {
+            background: #000000;
+            color: #FFFFFF;
+            border: none;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        /* Newsletter */
+        .newsletter {
+            background: #F5F5F5;
+            padding: 48px 32px;
+            text-align: center;
+        }
+        .newsletter h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .newsletter form {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .newsletter input {
+            padding: 12px;
+            width: 70%;
+            border: 1px solid #E0E0E0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .newsletter button {
+            background: #b08c5b;
+            color: #FFFFFF;
+            border: none;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        /* Footer */
+        footer {
+            background: #000000;
+            color: #FFFFFF;
+            padding: 48px 32px;
+        }
+        .footer-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        .footer-logo img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 24px;
+        }
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+        .social-icons a {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #4B5563;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            color: #FFFFFF;
+            border-color: #FFFFFF;
+        }
+        footer h3 {
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        footer ul {
+            list-style: none;
+        }
+        footer ul li {
+            margin-bottom: 8px;
+        }
+        footer a {
+            color: #9CA3AF;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        footer a:hover {
+            color: #FFFFFF;
+        }
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .payment-icons img {
+            width: 40px;
+            height: 24px;
+            margin: 0 4px;
+        }
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+            .icons { display: none; }
+            .categories, .products { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="logo">
+            <img src="https://via.placeholder.com/180x40?text=Glamour+Fragrance" alt="Glamour Fragrance">
+        </div>
+        <div class="icons">
+            <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+            <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></button>
+            <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+            <button><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+        </div>
+        <div class="dropdown" id="dropdown">
+            <a href="#shop-by-brand">Shop by Brand</a>
+            <a href="#top-sellers">Top Sellers</a>
+            <a href="#new-arrival">New Arrival</a>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </header>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">GLAMOUR FRAGRANCE</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="shop.html">Shop</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cart.html">🛒 Cart</a></li>
+    <!-- Hero -->
+    <div class="hero">
+        <img src="https://via.placeholder.com/800x400?text=Hero+Banner" alt="Ramadan Offer">
+        <div class="hero-content">
+            <h2>Ramadan Offer</h2>
+            <div class="discount">20<span>%</span></div>
+            <p>Flat Discount</p>
+            <div class="badge">Free Shipping on 170+ AED</div>
+        </div>
+    </div>
+
+    <!-- Shop by Brand -->
+    <section class="section" id="shop-by-brand">
+        <h2>Shop by Brand</h2>
+        <div class="categories">
+            <div class="category">
+                <img src="https://via.placeholder.com/300x400?text=Men" alt="Men">
+                <h3>MEN</h3>
+            </div>
+            <div class="category">
+                <img src="https://via.placeholder.com/300x400?text=Women" alt="Women">
+                <h3>WOMEN</h3>
+            </div>
+            <div class="category">
+                <img src="https://via.placeholder.com/300x400?text=Unisex" alt="Unisex">
+                <h3>UNISEX</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top Sellers -->
+    <section class="section" id="top-sellers">
+        <h2>Top Sellers</h2>
+        <div class="tabs">
+            <div class="tab active">MEN</div>
+            <div class="tab">WOMEN</div>
+            <div class="tab">UNISEX</div>
+        </div>
+        <div class="products">
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Dior" alt="Dior Homme Intense">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Dior Homme Intense</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Homme Intense</p>
+                <p class="label">Brand</p>
+                <p class="value">DIOR</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Coco" alt="Coco Mademoiselle">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Coco Mademoiselle</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Mademoiselle</p>
+                <p class="label">Brand</p>
+                <p class="value">CHANEL</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Ombre" alt="Ombre Leather">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Ombre Leather</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Leather</p>
+                <p class="label">Brand</p>
+                <p class="value">TOM FORD</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Delina" alt="Delina Exclusif">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Delina Exclusif</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Delina</p>
+                <p class="label">Brand</p>
+                <p class="value">PARFUMS DE MARLY</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Arrival -->
+    <section class="section" id="new-arrival">
+        <h2>New Arrival</h2>
+        <div class="products">
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Gucci" alt="Gucci Bloom">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Gucci Bloom</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Bloom</p>
+                <p class="label">Brand</p>
+                <p class="value">GUCCI</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Erolfa" alt="Erolfa 16">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Erolfa 16</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Erolfa</p>
+                <p class="label">Brand</p>
+                <p class="value">CREED</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Oud" alt="Oud Wood">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Oud Wood</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Oud</p>
+                <p class="label">Brand</p>
+                <p class="value">TOM FORD</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Meteore" alt="Meteore">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Meteore</h3>
+                <p class="label">Inspired By</p>
+                <p class="value">Meteor</p>
+                <p class="label">Brand</p>
+                <p class="value">LOUIS VUITTON</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <div class="newsletter">
+        <h2>Stay up to date with our latest news and products</h2>
+        <form>
+            <input type="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://via.placeholder.com/120x60?text=Glamour+Fragrance" alt="Glamour Fragrance">
+                <div class="social-icons">
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+                </div>
+            </div>
+            <div>
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="#shop-by-brand">Shop</a></li>
+                    <li><a href="#faq">FAQs</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>My Account</h3>
+                <ul>
+                    <li><a href="#account">Account details</a></li>
+                    <li><a href="#addresses">Addresses</a></li>
+                    <li><a href="#orders">Orders</a></li>
                 </ul>
             </div>
         </div>
-    </nav>
-
-    <header class="hero-section text-center text-light">
-        <h1>Luxury Perfumes for Every Occasion</h1>
-        <p>Discover exclusive fragrances for men, women, and unisex.</p>
-        <a href="shop.html" class="btn btn-primary">Shop Now</a>
-    </header>
-
-    <section class="container my-5">
-        <h2 class="text-center">Featured Fragrances</h2>
-        <div class="row" id="featured-products"></div>
-    </section>
-
-    <footer class="bg-dark text-center text-light p-3">
-        <p>© 2025 GLAMOUR FRAGRANCE. All Rights Reserved.</p>
+        <div class="footer-bottom">
+            <p>© 2025 Glamour Fragrance. All rights reserved.</p>
+            <div class="payment-icons">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+                <img src="https://via.placeholder.com/40x24" alt="Payment">
+            </div>
+            <div class="footer-links">
+                <a href="#terms">Terms and Conditions</a>
+                <a href="#delivery">Delivery Information</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+        </div>
     </footer>
 
-    <script src="assets/script.js"></script>
+    <!-- About Section (Simple Placeholder) -->
+    <section class="section" id="about">
+        <h2>About Us</h2>
+        <p>Glamour Fragrance offers luxury scents inspired by the world's finest perfumes.</p>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const dropdown = document.getElementById('dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tab.parentElement.querySelector('.active').classList.remove('active');
+                tab.classList.add('active');
+            });
+        });
+    </script>
 </body>
 </html>

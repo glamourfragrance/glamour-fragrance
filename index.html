@@ -138,38 +138,6 @@
             margin-bottom: 32px;
         }
         /* Shop by Brand */
-        .categories {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-        .category {
-            position: relative;
-            aspect-ratio: 3/4;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .category img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .category:hover img {
-            transform: scale(1.05);
-        }
-        .category h3 {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FFFFFF;
-            font-family: 'Playfair Display', serif;
-            font-size: 48px;
-        }
-        /* Top Sellers & New Arrival */
         .tabs {
             display: flex;
             border-bottom: 1px solid #E0E0E0;
@@ -189,9 +157,12 @@
             border-bottom: 2px solid #000000;
         }
         .products {
-            display: grid;
+            display: none;
             grid-template-columns: repeat(4, 1fr);
             gap: 24px;
+        }
+        .products.active {
+            display: grid;
         }
         .product {
             text-align: left;
@@ -220,14 +191,6 @@
         }
         .product h3 {
             font-size: 16px;
-            font-weight: 500;
-        }
-        .product .label {
-            font-size: 12px;
-            color: #6B7280;
-        }
-        .product .value {
-            font-size: 12px;
             font-weight: 500;
         }
         .product .prices {
@@ -361,7 +324,7 @@
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .icons { display: none; }
-            .categories, .products { grid-template-columns: repeat(2, 1fr); }
+            .products { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -380,8 +343,6 @@
         </div>
         <div class="dropdown" id="dropdown">
             <a href="#shop-by-brand">Shop by Brand</a>
-            <a href="#top-sellers">Top Sellers</a>
-            <a href="#new-arrival">New Arrival</a>
             <a href="#about">About Us</a>
             <a href="#contact">Contact</a>
         </div>
@@ -401,144 +362,19 @@
     <!-- Shop by Brand -->
     <section class="section" id="shop-by-brand">
         <h2>Shop by Brand</h2>
-        <div class="categories">
-            <div class="category">
-                <img src="https://via.placeholder.com/300x400?text=Men" alt="Men">
-                <h3>MEN</h3>
-            </div>
-            <div class="category">
-                <img src="https://via.placeholder.com/300x400?text=Women" alt="Women">
-                <h3>WOMEN</h3>
-            </div>
-            <div class="category">
-                <img src="https://via.placeholder.com/300x400?text=Unisex" alt="Unisex">
-                <h3>UNISEX</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- Top Sellers -->
-    <section class="section" id="top-sellers">
-        <h2>Top Sellers</h2>
         <div class="tabs">
-            <div class="tab active">MEN</div>
-            <div class="tab">WOMEN</div>
-            <div class="tab">UNISEX</div>
+            <div class="tab active" onclick="showTab('men')">MEN</div>
+            <div class="tab" onclick="showTab('women')">WOMEN</div>
+            <div class="tab" onclick="showTab('unisex')">UNISEX</div>
         </div>
-        <div class="products">
+        <!-- Men's Fragrances -->
+        <div class="products active" id="men">
             <div class="product">
                 <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/300?text=Dior" alt="Dior Homme Intense">
+                    <img src="https://via.placeholder.com/300?text=Dior+Homme+Intense" alt="Dior Homme Intense">
                     <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                 </div>
                 <h3>Dior Homme Intense</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Homme Intense</p>
-                <p class="label">Brand</p>
-                <p class="value">DIOR</p>
-                <div class="prices">
-                    <span class="original">90.00 AED</span>
-                    <span class="sale">72.00 AED</span>
-                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                </div>
-            </div>
-            <div class="product">
-                <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/300?text=Coco" alt="Coco Mademoiselle">
-                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                </div>
-                <h3>Coco Mademoiselle</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Mademoiselle</p>
-                <p class="label">Brand</p>
-                <p class="value">CHANEL</p>
-                <div class="prices">
-                    <span class="original">90.00 AED</span>
-                    <span class="sale">72.00 AED</span>
-                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                </div>
-            </div>
-            <div class="product">
-                <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/300?text=Ombre" alt="Ombre Leather">
-                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                </div>
-                <h3>Ombre Leather</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Leather</p>
-                <p class="label">Brand</p>
-                <p class="value">TOM FORD</p>
-                <div class="prices">
-                    <span class="original">90.00 AED</span>
-                    <span class="sale">72.00 AED</span>
-                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                </div>
-            </div>
-            <div class="product">
-                <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/300?text=Delina" alt="Delina Exclusif">
-                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                </div>
-                <h3>Delina Exclusif</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Delina</p>
-                <p class="label">Brand</p>
-                <p class="value">PARFUMS DE MARLY</p>
-                <div class="prices">
-                    <span class="original">90.00 AED</span>
-                    <span class="sale">72.00 AED</span>
-                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- New Arrival -->
-    <section class="section" id="new-arrival">
-        <h2>New Arrival</h2>
-        <div class="products">
-            <div class="product">
-                <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/300?text=Gucci" alt="Gucci Bloom">
-                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                </div>
-                <h3>Gucci Bloom</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Bloom</p>
-                <p class="label">Brand</p>
-                <p class="value">GUCCI</p>
-                <div class="prices">
-                    <span class="original">90.00 AED</span>
-                    <span class="sale">72.00 AED</span>
-                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                </div>
-            </div>
-            <div class="product">
-                <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/300?text=Erolfa" alt="Erolfa 16">
-                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                </div>
-                <h3>Erolfa 16</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Erolfa</p>
-                <p class="label">Brand</p>
-                <p class="value">CREED</p>
-                <div class="prices">
-                    <span class="original">90.00 AED</span>
-                    <span class="sale">72.00 AED</span>
-                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                </div>
-            </div>
-            <div class="product">
-                <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/300?text=Oud" alt="Oud Wood">
-                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                </div>
-                <h3>Oud Wood</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Oud</p>
-                <p class="label">Brand</p>
-                <p class="value">TOM FORD</p>
                 <div class="prices">
                     <span class="original">90.00 AED</span>
                     <span class="sale">72.00 AED</span>
@@ -551,10 +387,234 @@
                     <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                 </div>
                 <h3>Meteore</h3>
-                <p class="label">Inspired By</p>
-                <p class="value">Meteor</p>
-                <p class="label">Brand</p>
-                <p class="value">LOUIS VUITTON</p>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Elysium" alt="Elysium">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Elysium</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=L'Immensité" alt="L'Immensité">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>L'Immensité</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Oud+Wood" alt="Oud Wood">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Oud Wood</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Erolfa+16" alt="Erolfa 16">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Erolfa 16</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Absolute+Guilty" alt="Absolute Guilty">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Absolute Guilty (New)</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Amorino" alt="Amorino">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Amorino</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Luna+Rosa+Ocean" alt="Luna Rosa Ocean">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Luna Rosa Ocean</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Garanat" alt="Garanat">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Garanat</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=L'Envol" alt="L'Envol">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>L'Envol</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Black+Phantom" alt="Black Phantom">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Black Phantom</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Epic+for+Men" alt="Epic for Men">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Epic for Men</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Nouveau+Monde" alt="Nouveau Monde">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Nouveau Monde</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Patchouli+Intense" alt="Patchouli Intense">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Patchouli Intense</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Italian+Leather" alt="Italian Leather">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Italian Leather</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Oud+Malaki" alt="Oud Malaki">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Oud Malaki</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Onekh+Bvlgari" alt="Onekh Bvlgari">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Onekh Bvlgari</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Colonial+Leather" alt="Colonial Leather">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Colonial Leather</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=The+Blazing+Mr.+Sam" alt="The Blazing Mr. Sam">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>The Blazing Mr. Sam</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=The+Tragedy+of+Lord+George" alt="The Tragedy of Lord George">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>The Tragedy of Lord George</h3>
                 <div class="prices">
                     <span class="original">90.00 AED</span>
                     <span class="sale">72.00 AED</span>
@@ -562,84 +622,214 @@
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Newsletter -->
-    <div class="newsletter">
-        <h2>Stay up to date with our latest news and products</h2>
-        <form>
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-        </form>
-    </div>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="https://via.placeholder.com/120x60?text=Glamour+Fragrance" alt="Glamour Fragrance">
-                <div class="social-icons">
-                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
-                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
-                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
-                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
-                    <a href="#"><div style="width: 16px; height: 16px;"></div></a>
+        <!-- Women's Fragrances -->
+        <div class="products" id="women">
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Zahira" alt="Zahira">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Zahira</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                 </div>
             </div>
-            <div>
-                <h3>Useful Links</h3>
-                <ul>
-                    <li><a href="#shop-by-brand">Shop</a></li>
-                    <li><a href="#faq">FAQs</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Bottega+Veneta" alt="Bottega Veneta">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Bottega Veneta</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
             </div>
-            <div>
-                <h3>My Account</h3>
-                <ul>
-                    <li><a href="#account">Account details</a></li>
-                    <li><a href="#addresses">Addresses</a></li>
-                    <li><a href="#orders">Orders</a></li>
-                </ul>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Sakura" alt="Sakura">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Sakura</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>© 2025 Glamour Fragrance. All rights reserved.</p>
-            <div class="payment-icons">
-                <img src="https://via.placeholder.com/40x24" alt="Payment">
-                <img src="https://via.placeholder.com/40x24" alt="Payment">
-                <img src="https://via.placeholder.com/40x24" alt="Payment">
-                <img src="https://via.placeholder.com/40x24" alt="Payment">
-                <img src="https://via.placeholder.com/40x24" alt="Payment">
-                <img src="https://via.placeholder.com/40x24" alt="Payment">
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Coco+Mademoiselle" alt="Coco Mademoiselle">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Coco Mademoiselle</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#terms">Terms and Conditions</a>
-                <a href="#delivery">Delivery Information</a>
-                <a href="#privacy">Privacy Policy</a>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=The+Only+One" alt="The Only One">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>The Only One</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
             </div>
-        </div>
-    </footer>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Delina+Exclusif" alt="Delina Exclusif">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Delina Exclusif</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Lady+Million" alt="Lady Million">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Lady Million</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=The+Bewitching+Yasmine" alt="The Bewitching Yasmine">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>The Bewitching Yasmine</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Because+It’s+You" alt="Because It’s You">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Because It’s You</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Valentino+Donna" alt="Valentino Donna">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Valentino Donna</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=L'Interdit" alt="L'Interdit">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>L'Interdit</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Love+Story" alt="Love Story">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Love Story</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Armani+Si" alt="Armani Si">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Armani Si</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Gucci+Bloom" alt="Gucci Bloom">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Gucci Bloom</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Chance+Eau+Tendre" alt="Chance Eau Tendre">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Chance Eau Tendre</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Guilty+Absolute+Femme" alt="Guilty Absolute Femme">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 ولیت
 
-    <!-- About Section (Simple Placeholder) -->
-    <section class="section" id="about">
-        <h2>About Us</h2>
-        <p>Glamour Fragrance offers luxury scents inspired by the world's finest perfumes.</p>
-    </section>
-
-    <script>
-        function toggleMenu() {
-            const dropdown = document.getElementById('dropdown');
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-        }
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tab.parentElement.querySelector('.active').classList.remove('active');
-                tab.classList.add('active');
-            });
-        });
-    </script>
-</body>
-</html>
+                </div>
+                <h3>Guilty Absolute Femme</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Roses+Vanille" alt="Roses Vanille">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                </div>
+                <h3>Roses Vanille</h3>
+                <div class="prices">
+                    <span class="original">90.00 AED</span>
+                    <span class="sale">72.00 AED</span>
+                    <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                </div>
+            </div>
+            <div class="product">
+                <div class="image-wrapper">
+                    <img src="https://via.placeholder.com/300?text=Love" alt="Love">
+                    <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11

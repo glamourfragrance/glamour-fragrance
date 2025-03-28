@@ -21,16 +21,15 @@
             align-items: center; 
             justify-content: space-between; 
             min-height: 80px; 
-            transition: transform 0.3s ease; 
+            transition: transform 0.3s ease, opacity 0.3s ease; 
+            opacity: 1;
         }
         header.hidden { 
             transform: translateY(-100%); 
+            opacity: 0;
         }
         .header-spacer { 
             height: 80px; 
-        }
-        header.hidden .dropdown { 
-            display: none; 
         }
         .hamburger { padding: 8px; cursor: pointer; font-size: 20px; }
         .logo { position: absolute; left: 50%; transform: translateX(-50%); top: 5px; }
@@ -38,7 +37,23 @@
         .icons { display: flex; gap: 16px; }
         .icons button { background: none; border: none; color: #FFFFFF; padding: 8px; cursor: pointer; }
         .icons svg { width: 20px; height: 20px; }
-        .dropdown { display: none; position: absolute; top: 100%; left: 0; background: #000000; padding: 16px; width: 200px; }
+        .dropdown { 
+            display: none; 
+            position: absolute; 
+            top: 100%; 
+            left: 0; 
+            background: #000000; 
+            padding: 16px; 
+            width: 200px; 
+            transform: translateY(-10px); 
+            opacity: 0; 
+            transition: transform 0.3s ease, opacity 0.3s ease; 
+        }
+        .dropdown.active { 
+            display: block; 
+            transform: translateY(0); 
+            opacity: 1; 
+        }
         .dropdown a { color: #FFFFFF; text-decoration: none; display: block; margin: 8px 0; font-size: 14px; }
         .dropdown a:hover { color: #b08c5b; }
         .hero { position: relative; width: 100%; height: 400px; background: #F5F5F5; overflow: hidden; text-align: center; }
@@ -52,38 +67,104 @@
         .section { padding: 48px 32px; max-width: 1280px; margin: 0 auto; text-align: center; }
         h2 { font-size: 36px; font-weight: 600; margin-bottom: 32px; }
         .tabs { display: flex; border-bottom: 1px solid #E0E0E0; margin-bottom: 32px; justify-content: center; }
-        .tab { padding-bottom: 8px; margin: 0 32px; font-size: 14px; font-weight: 500; cursor: pointer; color: #6B7280; }
+        .tab { 
+            padding-bottom: 8px; 
+            margin: 0 32px; 
+            font-size: 14px; 
+            font-weight: 500; 
+            cursor: pointer; 
+            color: #6B7280; 
+            position: relative; 
+            transition: color 0.3s ease; 
+        }
         .tab.active { color: #000000; border-bottom: 2px solid #000000; }
+        .tab::after { 
+            content: ''; 
+            position: absolute; 
+            width: 0; 
+            height: 2px; 
+            background: #000000; 
+            bottom: -1px; 
+            left: 0; 
+            transition: width 0.3s ease; 
+        }
+        .tab:hover::after { width: 100%; }
         .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
-        .product { text-align: left; }
-        .product .image-wrapper { position: relative; aspect-ratio: 1; background: #F0F7FF; border-radius: 8px; overflow: hidden; margin-bottom: 16px; }
-        .product img { width: 100%; height: 100%; object-fit: cover; }
-        .product .heart { position: absolute; top: 8px; right: 8px; background: rgba(255, 255, 255, 0.8); border-radius: 50%; padding: 6px; cursor: pointer; }
+        .product { 
+            text-align: left; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .product:hover { 
+            transform: scale(1.05); 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+        }
+        .product .image-wrapper { 
+            position: relative; 
+            aspect-ratio: 1; 
+            background: #F0F7FF; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            margin-bottom: 16px; 
+        }
+        .product img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.3s ease; 
+        }
+        .product .image-wrapper:hover img { 
+            transform: scale(1.1); 
+        }
+        .product .heart { 
+            position: absolute; 
+            top: 8px; 
+            right: 8px; 
+            background: rgba(255, 255, 255, 0.8); 
+            border-radius: 50%; 
+            padding: 6px; 
+            cursor: pointer; 
+        }
         .product h3 { font-size: 16px; font-weight: 500; }
         .product .prices { display: flex; justify-content: space-between; align-items: center; margin-top: 16px; }
         .product .original { color: #9CA3AF; text-decoration: line-through; font-size: 14px; }
         .product .sale { font-size: 16px; font-weight: 500; }
-        .product button { background: #000000; color: #FFFFFF; border: none; padding: 8px; border-radius: 4px; cursor: pointer; }
-        .newsletter { background: #F5F5F5; padding: 48px 32px; text-align: center; }
-        .newsletter h2 { font-size: 24px; margin-bottom: 16px; }
-        .newsletter form { display: flex; justify-content: center; gap: 8px; max-width: 600px; margin: 0 auto; }
-        .newsletter input { padding: 12px; width: 70%; border: 1px solid #E0E0E0; border-radius: 4px; font-size: 14px; }
-        .newsletter button { background: #b08c5b; color: #FFFFFF; border: none; padding: 12px 24px; font-size: 14px; font-weight: 500; text-transform: uppercase; border-radius: 4px; cursor: pointer; }
-        footer { background: #000000; color: #FFFFFF; padding: 48px 32px; }
-        .footer-content { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 48px; }
-        .footer-logo img { width: 180px; height: 88px; margin-bottom: 24px; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.5)); }
-        .social-icons { display: flex; gap: 16px; }
-        .social-icons a { width: 32px; height: 32px; border: 1px solid #4B5563; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #9CA3AF; text-decoration: none; }
-        .social-icons a:hover { color: #FFFFFF; border-color: #FFFFFF; }
-        footer h3 { font-size: 18px; margin-bottom: 16px; }
-        footer ul { list-style: none; }
-        footer ul li { margin-bottom: 8px; }
-        footer a { color: #9CA3AF; text-decoration: none; cursor: pointer; }
-        footer a:hover { color: #FFFFFF; }
-        .footer-bottom { border-top: 1px solid #374151; padding-top: 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .payment-icons img { width: 40px; height: 24px; margin: 0 4px; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .product button { 
+            background: #000000; 
+            color: #FFFFFF; 
+            border: none; 
+            padding: 8px; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            position: relative; 
+            overflow: hidden; 
+            transition: background 0.3s ease; 
+        }
+        .product button::after { 
+            content: '✔'; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%) scale(0); 
+            font-size: 12px; 
+            opacity: 0; 
+            transition: transform 0.2s ease, opacity 0.2s ease; 
+        }
+        .product button.clicked::after { 
+            transform: translate(-50%, -50%) scale(1); 
+            opacity: 1; 
+        }
+        .product button.clicked svg { 
+            opacity: 0; 
+        }
+        .tab-content { 
+            display: none; 
+            opacity: 0; 
+            transition: opacity 0.3s ease; 
+        }
+        .tab-content.active { 
+            display: block; 
+            opacity: 1; 
+        }
         @media (max-width: 768px) {
             .hamburger { display: block; }
             .icons { display: none; }
@@ -132,7 +213,7 @@
             <div class="tab" onclick="showTab('unisex')">UNISEX</div>
         </div>
 
-        <!-- Men’s Fragrances (21) -->
+        <!-- Men’s Fragrances -->
         <div class="tab-content active" id="men">
             <div class="products">
                 <div class="product">
@@ -142,9 +223,9 @@
                     </div>
                     <h3>Dior Homme Intense</h3>
                     <div class="prices">
-                        <span class="original">50,000.00 Tsh</span>
-                        <span class="sale">35,000.00 Tsh</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -154,9 +235,9 @@
                     </div>
                     <h3>Meteore</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -166,9 +247,9 @@
                     </div>
                     <h3>Elysium</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -178,9 +259,9 @@
                     </div>
                     <h3>L'Immensité</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -190,9 +271,9 @@
                     </div>
                     <h3>Oud Wood</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -202,9 +283,9 @@
                     </div>
                     <h3>Erolfa 16</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -214,9 +295,9 @@
                     </div>
                     <h3>Absolute Guilty (New)</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -226,9 +307,9 @@
                     </div>
                     <h3>Amorino</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -238,9 +319,9 @@
                     </div>
                     <h3>Luna Rosa Ocean</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -250,9 +331,9 @@
                     </div>
                     <h3>Garanat</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -262,9 +343,9 @@
                     </div>
                     <h3>L'Envol</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -274,9 +355,9 @@
                     </div>
                     <h3>Black Phantom</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -286,9 +367,9 @@
                     </div>
                     <h3>Epic for Men</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -298,9 +379,9 @@
                     </div>
                     <h3>Nouveau Monde</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -310,9 +391,9 @@
                     </div>
                     <h3>Patchouli Intense</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -322,9 +403,9 @@
                     </div>
                     <h3>Italian Leather</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -334,9 +415,9 @@
                     </div>
                     <h3>Oud Malaki</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -346,9 +427,9 @@
                     </div>
                     <h3>Onekh Bvlgari</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -358,9 +439,9 @@
                     </div>
                     <h3>Colonial Leather</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="add  addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -370,9 +451,9 @@
                     </div>
                     <h3>The Blazing Mr. Sam</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -382,14 +463,16 @@
                     </div>
                     <h3>The Tragedy of Lord George</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
             </div>
         </div>
-                <!-- Women’s Fragrances (21) -->
+
+        <!-- End of Men’s Fragrances -->
+                <!-- Women’s Fragrances -->
         <div class="tab-content" id="women">
             <div class="products">
                 <div class="product">
@@ -399,177 +482,315 @@
                     </div>
                     <h3>Delina Exclusif</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Good+Girl" alt="Good Girl">
+                        <img src="https://via.placeholder.com/300?text=Delina+Royal+Essence" alt="Delina Royal Essence">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Good Girl</h3>
+                    <h3>Delina Royal Essence</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Libre+Intense" alt="Libre Intense">
+                        <img src="https://via.placeholder.com/300?text=Love+Don’t+Be+Shy" alt="Love Don’t Be Shy">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Libre Intense</h3>
+                    <h3>Love Don’t Be Shy</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Flora+Gorgeous+Gardenia" alt="Flora Gorgeous Gardenia">
+                        <img src="https://via.placeholder.com/300?text=Angels+Share" alt="Angels Share">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Flora Gorgeous Gardenia</h3>
+                    <h3>Angels Share</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=La+Vie+Est+Belle" alt="La Vie Est Belle">
+                        <img src="https://via.placeholder.com/300?text=Princess" alt="Princess">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>La Vie Est Belle</h3>
+                    <h3>Princess</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Mon+Guerlain" alt="Mon Guerlain">
+                        <img src="https://via.placeholder.com/300?text=Amouroud" alt="Amouroud">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Mon Guerlain</h3>
+                    <h3>Amouroud</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Si+Passione" alt="Si Passione">
+                        <img src="https://via.placeholder.com/300?text=Byredo+Rose" alt="Byredo Rose">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Si Passione</h3>
+                    <h3>Byredo Rose</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Chloe+Nomade" alt="Chloe Nomade">
+                        <img src="https://via.placeholder.com/300?text=Oud+Immortel" alt="Oud Immortel">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Chloe Nomade</h3>
+                    <h3>Oud Immortel</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Valentino+Donna" alt="Valentino Donna">
+                        <img src="https://via.placeholder.com/300?text=Tabacco+Mandarin" alt="Tabacco Mandarin">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Valentino Donna</h3>
+                    <h3>Tabacco Mandarin</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=My+Way" alt="My Way">
+                        <img src="https://via.placeholder.com/300?text=Oud+Satin+Mood" alt="Oud Satin Mood">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>My Way</h3>
+                    <h3>Oud Satin Mood</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Her+Blossom" alt="Her Blossom">
+                        <img src="https://via.placeholder.com/300?text=Velvet+Desert+Oud" alt="Velvet Desert Oud">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Her Blossom</h3>
+                    <h3>Velvet Desert Oud</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Velvet+Orchid" alt="Velvet Orchid">
+                        <img src="https://via.placeholder.com/300?text=Rose+Prick" alt="Rose Prick">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Velvet Orchid</h3>
+                    <h3>Rose Prick</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Peony+&+Blush+Suede" alt="Peony & Blush Suede">
+                        <img src="https://via.placeholder.com/300?text=Intense+Tiaré" alt="Intense Tiaré">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Peony & Blush Suede</h3>
+                    <h3>Intense Tiaré</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Angel+Muse" alt="Angel Muse">
+                        <img src="https://via.placeholder.com/300?text=Tabacco+Vanilla" alt="Tabacco Vanilla">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Angel Muse</h3>
+                    <h3>Tabacco Vanilla</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
                     <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Idole+Aura" alt="Idole Aura">
+                        <img src="https://via.placeholder.com/300?text=Oud+Rosewood" alt="Oud Rosewood">
                         <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
                     </div>
-                    <h3>Idole Aura</h3>
+                    <h3>Oud Rosewood</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unisex Fragrances -->
+        <div class="tab-content" id="unisex">
+            <div class="products">
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Accento+Overdose" alt="Accento Overdose">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Accento Overdose</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Erba+Pura" alt="Erba Pura">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Erba Pura</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Kirke" alt="Kirke">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Kirke</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Orto+Parisi+Megamare" alt="Orto Parisi Meg自杀are">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Orto Parisi Megamare</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Stercus" alt="Stercus">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Stercus</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Bocanegra" alt="Bocanegra">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Bocanegra</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Seminalis" alt="Seminalis">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Seminalis</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Cuoium" alt="Cuoium">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Cuoium</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Byredo+Mixed+Emotions" alt="Byredo Mixed Emotions">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Byredo Mixed Emotions</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Byredo+Slow+Dance" alt="Byredo Slow Dance">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Byredo Slow Dance</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                    </div>
+                </div>
+                <div class="product">
+                    <div class="image-wrapper">
+                        <img src="https://via.placeholder.com/300?text=Oud+For+Greatness" alt="Oud For Greatness">
+                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
+                    </div>
+                    <h3>Oud For Greatness</h3>
+                    <div class="prices">
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
                 <div class="product">
@@ -579,345 +800,139 @@
                     </div>
                     <h3>Black Opium</h3>
                     <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Flowerbomb" alt="Flowerbomb">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>Flowerbomb</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=La+Nuit+Tresor" alt="La Nuit Tresor">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>La Nuit Tresor</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Gucci+Bloom" alt="Gucci Bloom">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>Gucci Bloom</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Jo+Malone+Peony" alt="Jo Malone Peony">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>Jo Malone Peony</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-                    </div>
-                </div>
-                <div class="product">
-                    <div class="image-wrapper">
-                        <img src="https://via.placeholder.com/300?text=Aqua+Allegoria" alt="Aqua Allegoria">
-                        <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-                    </div>
-                    <h3>Aqua Allegoria</h3>
-                    <div class="prices">
-                        <span class="original">90.00 AED</span>
-                        <span class="sale">72.00 AED</span>
-                        <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
+                        <span class="original">50,000 Tsh</span>
+                        <span class="sale">35,000 Tsh</span>
+                        <button onclick="addToCart(this)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Unisex Fragrances (14) -->
-<div class="tab-content" id="unisex">
-    <div class="products">
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Ombre+Leather" alt="Ombre Leather">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Ombre Leather</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Irish+Leather" alt="Irish Leather">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Irish Leather</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Bond+No+9" alt="Bond No 9">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Bond No 9</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Sheikh+Abdullah" alt="Sheikh Abdullah">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Sheikh Abdullah</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Ambre+Nuit" alt="Ambre Nuit">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Ambre Nuit</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Liebe" alt="Liebe">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Liebe</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Rouge+Malachite" alt="Rouge Malachite">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Rouge Malachite</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Halfeti+Cedar" alt="Halfeti Cedar">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Halfeti Cedar</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Amber+Malaki" alt="Amber Malaki">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Amber Malaki</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Opera" alt="Opera">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Opera</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Santal+Royal" alt="Santal Royal">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Santal Royal</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Bibliothèque" alt="Bibliothèque">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Bibliothèque</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Black+Saffron" alt="Black Saffron">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Black Saffron</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-        <div class="product">
-            <div class="image-wrapper">
-                <img src="https://via.placeholder.com/300?text=Gris+Montaigne" alt="Gris Montaigne">
-                <div class="heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 4.7c-4-2.8-10 1.5-12 5.5-2.2 4.5 1 10 5 12 4 2 9-1 11-5"/></svg></div>
-            </div>
-            <h3>Gris Montaigne</h3>
-            <div class="prices">
-                <span class="original">90.00 AED</span>
-                <span class="sale">72.00 AED</span>
-                <button onclick="alert('Added to cart!')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 L3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></button>
-            </div>
-        </div>
-    </div>
-</div>
-</section>
+    <!-- End of Unisex Fragrances -->
+        <!-- Newsletter Section -->
+    <section class="section" id="newsletter">
+        <h2>Stay in the Scent Loop</h2>
+        <p>Subscribe to our newsletter for exclusive offers and updates!</p>
+        <form id="newsletter-form" style="max-width: 400px; margin: 24px auto; display: flex; gap: 8px;">
+            <input type="email" placeholder="Enter your email" style="flex: 1; padding: 8px; border: 1px solid #E0E0E0; border-radius: 4px; outline: none;" required>
+            <button type="submit" style="background: #000000; color: #FFFFFF; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; position: relative; overflow: hidden; transition: background 0.3s ease;">
+                Subscribe
+                <span class="spinner" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; border: 2px solid #FFFFFF; border-top: 2px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></span>
+            </button>
+        </form>
+        <p id="newsletter-success" style="display: none; color: #10B981; margin-top: 16px;">Thank you for subscribing!</p>
+    </section>
 
-<!-- Newsletter -->
-<section class="newsletter">
-    <h2>Subscribe to Our Newsletter</h2>
-    <form>
-        <input type="email" placeholder="Enter your email address" required>
-        <button type="submit">Subscribe</button>
-    </form>
-</section>
-
-<!-- Footer -->
-<footer id="contact">
-    <div class="footer-content">
-        <div>
-            <div class="footer-logo">
-                <img src="https://i.imgur.com/v73rOYX.png" alt="Glamour Fragrance">
+    <!-- Footer -->
+    <footer style="background: #000000; color: #FFFFFF; padding: 48px 32px; text-align: center;">
+        <div style="max-width: 1280px; margin: 0 auto;">
+            <div style="margin-bottom: 32px;">
+                <img src="https://i.imgur.com/v73rOYX.png" alt="Glamour Fragrance" style="width: 150px; height: 73px;">
             </div>
-            <p>Follow us on social media for updates and exclusive offers.</p>
-            <div class="social-icons">
-                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
-                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37zM17.5 6.5h.01"/></svg></a>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 32px; margin-bottom: 32px;">
+                <div>
+                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">Contact Us</h4>
+                    <p style="font-size: 14px;">Email: <a href="mailto:glamourfragrance2023@gmail.com" style="color: #b08c5b; text-decoration: none;">glamourfragrance2023@gmail.com</a></p>
+                    <p style="font-size: 14px;">Phone: <a href="tel:+255621218558" style="color: #b08c5b; text-decoration: none;">+255 621 218 558</a></p>
+                    <p style="font-size: 14px;">Address: City Mall (First floor), Dar es Salaam, Tanzania</p>
+                </div>
+                <div>
+                    <h4 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">Follow Us</h4>
+                    <div style="display: flex; gap: 16px; justify-content: center;">
+                        <a href="https://wa.me/+255772312733" target="_blank" style="color: #FFFFFF; text-decoration: none; transition: transform 0.3s ease, color 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path d="M12 2a10 10 0 0 0-8.6 15L2 21l4-1.4A10 10 0 0 0 12 22a10 10 0 0 0 10-10A10 10 0 0 0 12 2zm3.6 15.2c-.3.8-1.5 1.4-2.3 1.6-.6.1-1.4.1-2.2-.3-1-.5-1.8-1.3-2.5-2.2-.7-.9-1.3-1.8-1.6-2.8-.3-1-.1-1.8.5-2.4.2-.2.5-.3.8-.2.3 0 .6.2.8.4.3.3.6.6.9 1 .2.3.4.4.6.3.2-.1.5-.3.7-.5.2-.2.4-.4.6-.5.2-.1.4-.1.5 0 .2.1.3.3.4.5.2.3.3.6.4 1 0 .4 0 .8-.2 1.1z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/glamor.fragrance?igsh=YzljYTk1ODg3Zg==" target="_blank" style="color: #FFFFFF; text-decoration: none; transition: transform 0.3s ease, color 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61567435642272" target="_blank" style="color: #FFFFFF; text-decoration: none; transition: transform 0.3s ease, color 0.3s ease;">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 24px; height: 24px;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                    </div>
+                </div>
             </div>
+            <p style="font-size: 12px;">© 2025 Glamour Fragrance. All rights reserved.</p>
         </div>
-        <div>
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#shop-by-brand">Shop by Brand</a></li>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#">Shipping & Returns</a></li>
-                <li><a href="#">FAQs</a></li>
-            </ul>
-        </div>
-        <div>
-            <h3>Contact Us</h3>
-            <ul>
-                <li>Email: support@glamourfragrance.com</li>
-                <li>Phone: +971 123 456 789</li>
-                <li>Address: 123 Luxury Lane, Dubai, UAE</li>
-            </ul>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2025 Glamour Fragrance. All rights reserved.</p>
-        <div class="payment-icons">
-            <img src="https://via.placeholder.com/40x24?text=Visa" alt="Visa">
-            <img src="https://via.placeholder.com/40x24?text=MasterCard" alt="MasterCard">
-            <img src="https://via.placeholder.com/40x24?text=PayPal" alt="PayPal">
-        </div>
-    </div>
-</footer>
+    </footer>
 
-<!-- JavaScript -->
-<script>
-    function showTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(content => {
-            content.classList.remove('active');
-        });
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
-
-        document.getElementById(tabId).classList.add('active');
-        document.querySelector(`.tab[onclick="showTab('${tabId}')"]`).classList.add('active');
-    }
-
-    function toggleMenu() {
-        const dropdown = document.getElementById('dropdown');
-        const header = document.querySelector('header');
-        
-        if (header.classList.contains('hidden')) {
-            // If the header is hidden, show the header first
-            header.classList.remove('hidden');
-            dropdown.style.display = 'block';
-        } else {
-            // Toggle the dropdown visibility
-            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    <!-- Additional Styles for Third Third -->
+    <style>
+        #newsletter-form button:hover { background: #333333; }
+        #newsletter-form button.submitting .spinner { display: block; }
+        #newsletter-form button.submitting span:not(.spinner) { opacity: 0; }
+        footer a:hover { transform: scale(1.2); color: #b08c5b; }
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
-    }
+    </style>
 
-    let lastScrollTop = 0;
+    <!-- JavaScript (Combined Animations and Newsletter Form) -->
+    <script>
+        // Animations for Header, Tabs, Add-to-Cart, and Dropdown
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
 
-    window.addEventListener('scroll', function() {
-        let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
-
-        if (currentScrollTop > lastScrollTop) {
-            // Scrolling down
-            document.querySelector('header').classList.add('hidden');
-        } else {
-            // Scrolling up
-            document.querySelector('header').classList.remove('hidden');
+            const selectedContent = document.getElementById(tabId);
+            const selectedTab = document.querySelector(`.tab[onclick="showTab('${tabId}')"]`);
+            
+            selectedContent.classList.add('active');
+            selectedTab.classList.add('active');
         }
 
-        lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop; // For Mobile or negative scrolling
-    });
-</script>
+        function toggleMenu() {
+            const dropdown = document.getElementById('dropdown');
+            const header = document.querySelector('header');
+            
+            if (header.classList.contains('hidden')) {
+                header.classList.remove('hidden');
+                setTimeout(() => dropdown.classList.add('active'), 10);
+            } else {
+                dropdown.classList.toggle('active');
+            }
+        }
+
+        function addToCart(button) {
+            button.classList.add('clicked');
+            setTimeout(() => {
+                button.classList.remove('clicked');
+            }, 1000);
+        }
+
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+
+            if (currentScrollTop > lastScrollTop) {
+                document.querySelector('header').classList.add('hidden');
+            } else {
+                document.querySelector('header').classList.remove('hidden');
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        });
+
+        // Newsletter Form Interaction
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button');
+            button.classList.add('submitting');
+            button.disabled = true;
+
+            setTimeout(() => {
+                button.classList.remove('submitting');
+                button.disabled = false;
+                document.getElementById('newsletter-success').style.display = 'block';
+                this.reset();
+            }, 2000);
+        });
+    </script>
 
 </body>
 </html>

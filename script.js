@@ -1,74 +1,151 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const products = [
-        // Men's Fragrances
-        { name: "Dior Homme Intense", category: "men", price: 99, image: "assets/dior.jpg" },
-        { name: "Meteore", category: "men", price: 110, image: "assets/meteore.jpg" },
-        { name: "Elysium", category: "men", price: 120, image: "assets/elysium.jpg" },
-        { name: "L'Immensité", category: "men", price: 105, image: "assets/limmensite.jpg" },
-        { name: "Oud Wood", category: "men", price: 130, image: "assets/oud-wood.jpg" },
-        { name: "Erolfa 16", category: "men", price: 95, image: "assets/erolfa.jpg" },
-        { name: "Absolute Guilty (New)", category: "men", price: 125, image: "assets/guilty.jpg" },
-        { name: "Amorino", category: "men", price: 100, image: "assets/amorino.jpg" },
-        { name: "Luna Rosa Ocean", category: "men", price: 90, image: "assets/luna-rosa.jpg" },
-        { name: "Garanat", category: "men", price: 115, image: "assets/garanat.jpg" },
-        { name: "L'Envol", category: "men", price: 98, image: "assets/lenvol.jpg" },
-        { name: "Black Phantom", category: "men", price: 135, image: "assets/black-phantom.jpg" },
-        { name: "Epic for Men", category: "men", price: 140, image: "assets/epic.jpg" },
-        { name: "Nouveau Monde", category: "men", price: 125, image: "assets/nouveau-monde.jpg" },
-        { name: "Patchouli Intense", category: "men", price: 110, image: "assets/patchouli.jpg" },
-        { name: "Italian Leather", category: "men", price: 115, image: "assets/italian-leather.jpg" },
-        { name: "Oud Malaki", category: "men", price: 130, image: "assets/oud-malaki.jpg" },
-        { name: "Onekh Bvlgari", category: "men", price: 140, image: "assets/onekh.jpg" },
-        { name: "Colonial Leather", category: "men", price: 120, image: "assets/colonial-leather.jpg" },
-        { name: "The Blazing Mr. Sam", category: "men", price: 135, image: "assets/mr-sam.jpg" },
-        { name: "The Tragedy of Lord George", category: "men", price: 150, image: "assets/lord-george.jpg" },
+// Toggle Menu Functionality
+function toggleMenu() {
+    const dropdown = document.getElementById('dropdown');
+    const header = document.querySelector('header');
+    const hamburger = document.querySelector('.hamburger');
+    const isExpanded = hamburger.getAttribute('aria-expanded') === 'true';
 
-        // Women's Fragrances
-        { name: "Zahira", category: "women", price: 85, image: "assets/zahira.jpg" },
-        { name: "Bottega Veneta", category: "women", price: 95, image: "assets/bottega.jpg" },
-        { name: "Sakura", category: "women", price: 100, image: "assets/sakura.jpg" },
-        { name: "Coco Mademoiselle", category: "women", price: 120, image: "assets/coco-mademoiselle.jpg" },
-        { name: "The Only One", category: "women", price: 110, image: "assets/the-only-one.jpg" },
-        { name: "Delina Exclusif", category: "women", price: 140, image: "assets/delina.jpg" },
-        { name: "Lady Million", category: "women", price: 95, image: "assets/lady-million.jpg" },
-        { name: "The Bewitching Yasmine", category: "women", price: 130, image: "assets/yasmine.jpg" },
-        { name: "Because It’s You", category: "women", price: 105, image: "assets/because-you.jpg" },
-        { name: "Valentino Donna", category: "women", price: 115, image: "assets/valentino.jpg" },
-        { name: "L'Interdit", category: "women", price: 125, image: "assets/linterdit.jpg" },
-        { name: "Love Story", category: "women", price: 115, image: "assets/love-story.jpg" },
-        { name: "Armani Si", category: "women", price: 130, image: "assets/armani-si.jpg" },
-        { name: "Gucci Bloom", category: "women", price: 85, image: "assets/gucci-bloom.jpg" },
-        { name: "Chance Eau Tendre", category: "women", price: 100, image: "assets/chance.jpg" },
-        { name: "Guilty Absolute Femme", category: "women", price: 110, image: "assets/guilty-femme.jpg" },
-        { name: "Roses Vanille", category: "women", price: 120, image: "assets/roses-vanille.jpg" },
-        { name: "Love", category: "women", price: 125, image: "assets/love.jpg" },
-        { name: "Aura", category: "women", price: 130, image: "assets/aura.jpg" },
-        { name: "Midnight Trésor", category: "women", price: 135, image: "assets/midnight.jpg" },
-        { name: "Twilly d’Hermès", category: "women", price: 125, image: "assets/twilly.jpg" },
-        { name: "Angel Nova", category: "women", price: 130, image: "assets/angel-nova.jpg" },
-        { name: "Insolence", category: "women", price: 135, image: "assets/insolence.jpg" },
-        { name: "Coco Noir", category: "women", price: 145, image: "assets/coco-noir.jpg" },
-        { name: "Eau du Soir", category: "women", price: 150, image: "assets/eau-du-soir.jpg" },
-        { name: "Private Collection", category: "women", price: 160, image: "assets/private.jpg" },
-        { name: "Rose des Vents", category: "women", price: 140, image: "assets/rose-vents.jpg" },
-        { name: "Moonlight Patchouli", category: "women", price: 145, image: "assets/moonlight.jpg" },
+    // Toggle aria-expanded state
+    hamburger.setAttribute('aria-expanded', !isExpanded);
 
-        // Unisex Fragrances
-        { name: "Ombre Leather", category: "unisex", price: 120, image: "assets/ombre.jpg" },
-        { name: "Irish Leather", category: "unisex", price: 110, image: "assets/irish-leather.jpg" },
-        { name: "Bond No 9", category: "unisex", price: 125, image: "assets/bond9.jpg" },
-        { name: "Sheikh Abdullah", category: "unisex", price: 130, image: "assets/sheikh.jpg" },
-        { name: "Ambre Nuit", category: "unisex", price: 140, image: "assets/ambre-nuit.jpg" },
-        { name: "Liebe", category: "unisex", price: 115, image: "assets/liebe.jpg" },
-        { name: "Rouge Malachite", category: "unisex", price: 135, image: "assets/rouge.jpg" },
-        { name: "Halfeti Cedar", category: "unisex", price: 145, image: "assets/halfeti.jpg" },
-        { name: "Amber Malaki", category: "unisex", price: 150, image: "assets/amber.jpg" },
-        { name: "Opera", category: "unisex", price: 155, image: "assets/opera.jpg" },
-        { name: "Santal Royal", category: "unisex", price: 160, image: "assets/santal.jpg" },
-        { name: "Bibliothèque", category: "unisex", price: 135, image: "assets/bibliotheque.jpg" },
-        { name: "Black Saffron", category: "unisex", price: 140, image: "assets/saffron.jpg" },
-        { name: "Gris Montaigne", category: "unisex", price: 145, image: "assets/gris.jpg" },
-    ];
+    if (header.classList.contains('hidden')) {
+        // If the header is hidden, show the header first
+        header.classList.remove('hidden');
+        dropdown.classList.add('active');
+    } else {
+        // Toggle the dropdown visibility
+        dropdown.classList.toggle('active');
+    }
+}
 
-    renderProducts(products);
+// Tab Switching Functionality
+function showTab(tabId) {
+    // Remove active class from all tabs and content
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+        tab.classList.remove('ripple'); // Reset ripple effect
+    });
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+
+    // Add active class to the selected tab and content
+    const selectedTab = document.querySelector(`#tab-${tabId}`);
+    const selectedContent = document.getElementById(tabId);
+    selectedTab.classList.add('active');
+    selectedTab.setAttribute('aria-selected', 'true');
+    selectedTab.classList.add('ripple'); // Trigger ripple effect
+    selectedContent.classList.add('active');
+}
+
+// Heart (Favorite) Functionality
+function toggleFavorite(event) {
+    const heartButton = event.currentTarget;
+    const isPressed = heartButton.getAttribute('aria-pressed') === 'true';
+    heartButton.setAttribute('aria-pressed', !isPressed);
+    // In a real app, you’d also save this to a user’s favorites (e.g., via localStorage or a backend)
+}
+
+// Add to Cart Functionality
+function addToCart(event) {
+    const button = event.currentTarget;
+    button.classList.add('bounce');
+    alert('Added to cart!');
+    // In a real app, you’d add the item to a cart (e.g., via localStorage or a backend)
+}
+
+// Newsletter Subscription Functionality
+function handleSubscribe(event) {
+    event.preventDefault();
+    const form = event.target;
+    const emailInput = form.querySelector('#email');
+    const subscribeBtn = form.querySelector('.subscribe-btn');
+    const successMessage = form.querySelector('.success-message');
+
+    // Basic email validation
+    if (!emailInput.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+        emailInput.setCustomValidity('Please enter a valid email address.');
+        emailInput.reportValidity();
+        return;
+    }
+
+    emailInput.setCustomValidity(''); // Clear any previous validation message
+
+    // Simulate loading state
+    subscribeBtn.classList.add('loading');
+    subscribeBtn.disabled = true;
+
+    // Simulate form submission (replace with actual API call in production)
+    setTimeout(() => {
+        subscribeBtn.classList.remove('loading');
+        subscribeBtn.disabled = false;
+        successMessage.classList.add('visible');
+        form.reset(); // Clear the form
+    }, 2000);
+}
+
+// Scroll Behavior for Header
+function handleScroll() {
+    const header = document.querySelector('header');
+    const dropdown = document.getElementById('dropdown');
+    const hamburger = document.querySelector('.hamburger');
+    let lastScroll = 0;
+
+    return function () {
+        const currentScroll = window.scrollY;
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scrolling down and past 100px
+            header.classList.add('hidden');
+            // Close the dropdown if open
+            if (dropdown.classList.contains('active')) {
+                dropdown.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+        } else if (currentScroll < lastScroll) {
+            // Scrolling up
+            header.classList.remove('hidden');
+        }
+
+        lastScroll = currentScroll;
+    };
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // Hamburger Menu
+    const hamburger = document.querySelector('.hamburger');
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Tabs
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabId = tab.id.replace('tab-', '');
+            showTab(tabId);
+        });
+    });
+
+    // Heart Buttons
+    const heartButtons = document.querySelectorAll('.heart');
+    heartButtons.forEach(button => {
+        button.addEventListener('click', toggleFavorite);
+    });
+
+    // Add to Cart Buttons
+    const addToCartButtons = document.querySelectorAll('.add-to-cart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', addToCart);
+    });
+
+    // Newsletter Form
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', handleSubscribe);
+    }
+
+    // Scroll Event for Header
+    const onScroll = handleScroll();
+    window.addEventListener('scroll', onScroll);
 });
